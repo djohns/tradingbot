@@ -1,0 +1,2 @@
+"""Crypto Advisor Bot backend."""
+

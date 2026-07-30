@@ -1,0 +1,38 @@
+assets:
+  - BTCUSDT
+  - ETHUSDT
+  - SOLUSDT
+  - BNBUSDT
+timeframes:
+  - 15m
+  - 1h
+  - 4h
+  - 1d
+signal_timeframes:
+  - 1h
+  - 4h
+candle_limit: 500
+risk:
+  capital_usd: 10000
+  risk_per_trade_pct: 1.0
+  minimum_rr: 1.5
+  minimum_confidence: 62
+  atr_stop_multiplier: 1.5
+  max_open_signals_per_asset: 1
+context:
+  fear_greed_weight: 0.25
+  macro_weight: 0.45
+  btc_dominance_weight: 0.15
+  onchain_weight: 0.15
+alerts:
+  telegram_enabled: true
+storage:
+  sqlite_path: backend/data/bot.db
+  output_dir: backend/data
+dashboard:
+  public_data_dir: dashboard/public/data
+network:
+  timeout_seconds: 15
+  max_retries: 3
+  backoff_seconds: 1.0
+
