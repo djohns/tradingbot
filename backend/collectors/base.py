@@ -47,8 +47,17 @@ class HTTPCollector:
                     raise requests.HTTPError(
                         f"HTTP {response.status_code}", response=response
                     )
+                # Retrying legal/authorization/not-found responses only delays the
+                # fallback provider and cannot make the request succeed.
+                if 400 <= response.status_code < 500:
+                    raise APIError(
+                        f"HTTP {response.status_code} from {url}: "
+                        f"{response.text[:160]}"
+                    )
                 response.raise_for_status()
                 return response.json()
+            except APIError:
+                raise
             except (requests.RequestException, ValueError) as exc:
                 error = exc
                 if attempt + 1 < self.max_retries:
@@ -62,4 +71,3 @@ class HTTPCollector:
                     )
                     time.sleep(wait)
         raise APIError(f"API unavailable: {url}: {error}") from error
-

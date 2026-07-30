@@ -45,6 +45,7 @@ jobs:
 
       - name: Analyze market
         env:
+          MARKET_DATA_PROVIDER: kraken
           FRED_API_KEY: ${{ secrets.FRED_API_KEY }}
           LUNARCRUSH_API_KEY: ${{ secrets.LUNARCRUSH_API_KEY }}
           COINGECKO_API_KEY: ${{ secrets.COINGECKO_API_KEY }}
@@ -59,6 +60,7 @@ jobs:
 
       - name: Commit refreshed public data
         id: commit
+        if: github.ref == 'refs/heads/main'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -74,7 +76,7 @@ jobs:
 
   deploy:
     needs: analyze
-    if: always() && (needs.analyze.result == 'success' || needs.analyze.result == 'skipped')
+    if: needs.analyze.result == 'success' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     environment:
       name: github-pages
@@ -101,4 +103,3 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-

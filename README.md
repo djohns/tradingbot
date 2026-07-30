@@ -11,7 +11,7 @@ con control de riesgo. Opera en modo **asesor**: nunca abre ni cierra órdenes.
 
 ## Qué incluye
 
-- Datos OHLCV, ticker y libro de órdenes de Binance.
+- Datos OHLCV, ticker y libro de órdenes con Binance/Kraken y fallback automático.
 - Dominancia y capitalización global desde CoinGecko.
 - Fear & Greed de Alternative.me.
 - Contexto macro opcional con FRED: dólar ponderado, tasa de fondos federales,
@@ -141,6 +141,7 @@ por Git y nunca debe subirse.
 | `TELEGRAM_CHAT_ID` | No | Destino de Telegram |
 | `BOT_CONFIG` | No | Ruta alternativa al YAML |
 | `BOT_LOG_LEVEL` | No | Nivel de logs; por defecto `INFO` |
+| `MARKET_DATA_PROVIDER` | No | `auto`, `binance` o `kraken` |
 
 ### Telegram
 
@@ -188,7 +189,7 @@ nombres exactos:
 
 El workflow:
 
-1. Descarga datos y ejecuta el motor.
+1. Descarga datos desde Kraken en GitHub Actions y ejecuta el motor.
 2. Actualiza los JSON y los confirma con `github-actions[bot]`.
 3. Compila el dashboard.
 4. Publica el artefacto en GitHub Pages.
@@ -197,6 +198,12 @@ El `GITHUB_TOKEN` integrado tiene permisos mínimos declarados por el workflow;
 no se necesita un PAT. Si la organización bloquea escrituras desde Actions,
 habilita **Settings → Actions → General → Workflow permissions → Read and write
 permissions**.
+
+GitHub Actions usa Kraken como fuente primaria porque Binance puede bloquear
+runners alojados en Estados Unidos con HTTP 451. En local, `auto` prefiere
+Binance. Ambas fuentes actúan como respaldo mutuo. Si ninguna devuelve velas, la
+ejecución falla antes de escribir archivos: el dashboard conserva el último
+snapshot válido en lugar de publicar datos vacíos.
 
 ### Frecuencia
 
@@ -264,4 +271,3 @@ walk-forward.
 ├── .env.example
 └── README.md
 ```
-

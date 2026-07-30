@@ -35,4 +35,3 @@ network:
   timeout_seconds: 15
   max_retries: 3
   backoff_seconds: 1.0
-

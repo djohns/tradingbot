@@ -8,6 +8,7 @@ from .base import HTTPCollector
 
 
 class BinanceCollector(HTTPCollector):
+    name = "Binance"
     BASE_URLS = (
         "https://api.binance.com/api/v3",
         "https://api1.binance.com/api/v3",
@@ -87,4 +88,3 @@ class BinanceCollector(HTTPCollector):
             "largest_bid_wall": max(bids, key=lambda item: item[0] * item[1]),
             "largest_ask_wall": max(asks, key=lambda item: item[0] * item[1]),
         }
-
