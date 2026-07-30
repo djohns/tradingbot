@@ -1,30 +1,30 @@
 {
-  "score": 4.9,
+  "score": 17.0,
   "label": "neutral",
-  "macro_score": 0.0,
+  "macro_score": 26.8,
   "fear_greed": {
     "value": 28,
     "classification": "Fear",
     "timestamp": "1785369600"
   },
   "global_market": {
-    "btc_dominance": 56.54792030893802,
-    "eth_dominance": 10.125055483582901,
-    "market_cap_change_24h_pct": 0.27286168581723697,
-    "total_market_cap_usd": 2273490309554.9307
+    "btc_dominance": 56.557250868344155,
+    "eth_dominance": 10.113083157142935,
+    "market_cap_change_24h_pct": 0.17249820351931405,
+    "total_market_cap_usd": 2271214764600.878
   },
   "onchain": {
-    "mempool_transactions": 89070.0,
-    "mempool_vsize": 43761054.0,
-    "fastest_fee": 4.0,
+    "mempool_transactions": 88169.0,
+    "mempool_vsize": 43457065.0,
+    "fastest_fee": 3.0,
     "hashrate_7d_change_pct": -0.41977063401850145
   },
   "macro_reasons": [
-    "FRED no disponible; contexto macro neutral"
+    "Dólar 20 períodos: -0.29%",
+    "M2 3 períodos: +2.11%",
+    "Curva 10Y-2Y: +0.45"
   ],
-  "missing_sources": [
-    "fred"
-  ],
+  "missing_sources": [],
   "social": {},
-  "updated_at": "2026-07-30T04:10:14.431298+00:00"
+  "updated_at": "2026-07-30T04:31:11.581361+00:00"
 }

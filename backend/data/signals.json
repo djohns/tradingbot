@@ -1,4 +1,33 @@
 {
-  "updated_at": "2026-07-30T04:10:14.431298+00:00",
-  "signals": []
+  "updated_at": "2026-07-30T04:31:11.581361+00:00",
+  "signals": [
+    {
+      "id": "dc87970b6998c95a",
+      "activo": "SOLUSDT",
+      "timeframe": "4h",
+      "tipo": "short",
+      "confianza": 63,
+      "razones": [
+        "Alineación EMA 20 < 50 < 200",
+        "RSI con margen bajista (45.8)",
+        "Estructura SMC bajista",
+        "Confluencia con fvg",
+        "Tendencia superior confirma short",
+        "Contexto neutral (+17.0)"
+      ],
+      "entrada_sugerida": 73.75,
+      "stop_loss": 77.65397078,
+      "take_profit_1": 67.89404382,
+      "take_profit_2": 65.94205843,
+      "ratio_riesgo_beneficio": 1.5,
+      "tamano_posicion_sugerido": 25.61494579,
+      "capital_en_riesgo": 100.0,
+      "contexto_macro": "neutral",
+      "datos_incompletos": [],
+      "timestamp": "2026-07-30T04:31:15.027640+00:00",
+      "estado": "abierta",
+      "resultado_r": null,
+      "disclaimer": "Señal algorítmica con fines informativos; no constituye asesoría financiera. Verifica los supuestos y gestiona tu propio riesgo antes de decidir."
+    }
+  ]
 }
