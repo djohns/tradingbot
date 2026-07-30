@@ -51,6 +51,14 @@ class Storage:
         self.connection.commit()
         return cursor.rowcount > 0
 
+    def hydrate(self, signals: list[dict[str, Any]]) -> int:
+        """Restore versioned signal history into an ephemeral Actions database."""
+        restored = 0
+        for signal in signals:
+            if self.save_signal(signal):
+                restored += 1
+        return restored
+
     def list_signals(self, limit: int = 250) -> list[dict[str, Any]]:
         rows = self.connection.execute(
             "SELECT payload FROM signals ORDER BY created_at DESC LIMIT ?", (limit,)
@@ -78,4 +86,3 @@ class Storage:
             (status, result_r, json.dumps(payload, ensure_ascii=False), signal_id),
         )
         self.connection.commit()
-

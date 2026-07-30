@@ -14,17 +14,29 @@ from backend.analysis.context import compose_context
 from backend.analysis.indicators import add_indicators
 from backend.analysis.smc import analyze_smc
 from backend.backtesting.backtest import run_backtest
-from backend.collectors.binance import BinanceCollector
 from backend.collectors.coingecko import CoinGeckoCollector
 from backend.collectors.feargreed import FearGreedCollector
 from backend.collectors.fred import FredCollector
 from backend.collectors.lunarcrush import LunarCrushCollector
+from backend.collectors.market import ResilientMarketCollector
 from backend.collectors.onchain import OnChainCollector
 from backend.config import load_config, secret
 from backend.signals.engine import evaluate
 from backend.storage import Storage
 
 LOGGER = logging.getLogger("crypto_bot")
+
+
+class MarketDataUnavailable(RuntimeError):
+    """Raised before output writes when no valid market snapshot was collected."""
+
+
+def require_market_data(market: dict[str, Any]) -> None:
+    """Fail closed so scheduled jobs never replace valid data with an empty set."""
+    if not market.get("assets"):
+        raise MarketDataUnavailable(
+            "No market assets were collected; preserving the last published snapshot"
+        )
 
 
 def safe_collect(name: str, operation: Callable[[], Any]) -> tuple[Any | None, dict[str, Any]]:
@@ -52,6 +64,19 @@ def write_json(path: Path, payload: Any) -> None:
     temporary = path.with_suffix(".tmp")
     temporary.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
     temporary.replace(path)
+
+
+def read_previous_signals(output_dir: Path) -> list[dict[str, Any]]:
+    path = output_dir / "signals.json"
+    if not path.exists():
+        return []
+    try:
+        payload = json.loads(path.read_text(encoding="utf-8"))
+        signals = payload.get("signals", [])
+        return signals if isinstance(signals, list) else []
+    except (OSError, ValueError, TypeError):
+        LOGGER.warning("Could not restore previous signal history from %s", path)
+        return []
 
 
 def settle_open_signals(storage: Storage, symbol: str, price_frame: Any) -> None:
@@ -93,7 +118,7 @@ def run(config_path: str | None = None, *, backtest: bool = False) -> dict[str, 
         "max_retries": network["max_retries"],
         "backoff": network["backoff_seconds"],
     }
-    binance = BinanceCollector(**kwargs)
+    market_collector = ResilientMarketCollector(**kwargs)
     statuses: list[dict[str, Any]] = []
     fear_greed, status = safe_collect("Fear & Greed", FearGreedCollector(**kwargs).current)
     statuses.append(status)
@@ -134,8 +159,16 @@ def run(config_path: str | None = None, *, backtest: bool = False) -> dict[str, 
     context["social"] = social
     context["updated_at"] = datetime.now(timezone.utc).isoformat()
 
+    output_dir = Path(config["storage"]["output_dir"])
     storage = Storage(config["storage"]["sqlite_path"])
-    market: dict[str, Any] = {"updated_at": context["updated_at"], "assets": {}}
+    restored_signals = storage.hydrate(read_previous_signals(output_dir))
+    if restored_signals:
+        LOGGER.info("Restored %s historical signals from JSON", restored_signals)
+    market: dict[str, Any] = {
+        "updated_at": context["updated_at"],
+        "assets": {},
+        "provider_order": market_collector.provider_order,
+    }
     diagnostics: list[dict[str, Any]] = []
     backtests: dict[str, Any] = {}
     new_signals: list[dict[str, Any]] = []
@@ -143,18 +176,24 @@ def run(config_path: str | None = None, *, backtest: bool = False) -> dict[str, 
         frames: dict[str, Any] = {}
         for timeframe in config["timeframes"]:
             frame, status = safe_collect(
-                f"Binance {symbol} {timeframe}",
-                lambda s=symbol, tf=timeframe: binance.klines(s, tf, config["candle_limit"]),
+                f"Market {symbol} {timeframe}",
+                lambda s=symbol, tf=timeframe: market_collector.klines(
+                    s, tf, config["candle_limit"]
+                ),
             )
             statuses.append(status)
-            if frame is not None and len(frame) >= 210:
-                frames[timeframe] = add_indicators(frame)
+            if frame is not None:
+                closed = frame[frame["close_time"] <= datetime.now(timezone.utc)]
+                if len(closed) >= 210:
+                    frames[timeframe] = add_indicators(closed)
         ticker, status = safe_collect(
-            f"Binance ticker {symbol}", lambda s=symbol: binance.ticker_24h(s)
+            f"Market ticker {symbol}",
+            lambda s=symbol: market_collector.ticker_24h(s),
         )
         statuses.append(status)
         order_book, status = safe_collect(
-            f"Binance orderbook {symbol}", lambda s=symbol: binance.order_book(s)
+            f"Market orderbook {symbol}",
+            lambda s=symbol: market_collector.order_book(s),
         )
         statuses.append(status)
         if not frames:
@@ -165,6 +204,7 @@ def run(config_path: str | None = None, *, backtest: bool = False) -> dict[str, 
         market["assets"][symbol] = {
             "ticker": ticker,
             "order_book": order_book,
+            "data_provider": market_collector.last_provider,
             "timeframe": chart_tf,
             "candles": [
                 {
@@ -220,16 +260,23 @@ def run(config_path: str | None = None, *, backtest: bool = False) -> dict[str, 
         "backtests": backtests,
         "updated_at": context["updated_at"],
     }
+    market_statuses = [
+        item for item in statuses if str(item.get("name", "")).startswith("Market ")
+    ]
     system = {
         "updated_at": context["updated_at"],
         "overall_status": "operational"
-        if any(item["status"] == "ok" for item in statuses)
+        if market["assets"]
+        and market_statuses
+        and all(item["status"] == "ok" for item in market_statuses)
         else "degraded",
+        "market_data_available": bool(market["assets"]),
+        "market_providers": market_collector.provider_order,
         "sources": statuses,
         "new_signals": len(new_signals),
         "diagnostics": diagnostics,
     }
-    output_dir = Path(config["storage"]["output_dir"])
+    require_market_data(market)
     outputs = {
         "market.json": market,
         "signals.json": {"updated_at": context["updated_at"], "signals": signals},
