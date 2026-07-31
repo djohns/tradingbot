@@ -1,6 +1,33 @@
 {
-  "updated_at": "2026-07-30T22:19:46.635076+00:00",
+  "updated_at": "2026-07-31T00:15:49.701010+00:00",
   "signals": [
+    {
+      "id": "f0dcfe3a0358d181",
+      "activo": "ETHUSDT",
+      "timeframe": "4h",
+      "tipo": "long",
+      "confianza": 62,
+      "razones": [
+        "Alineación EMA 20 > 50 > 200",
+        "RSI constructivo (52.8)",
+        "Divergencia RSI bullish",
+        "Estructura SMC alcista",
+        "Contexto neutral (+17.9)"
+      ],
+      "entrada_sugerida": 1918.83,
+      "stop_loss": 1853.0951075,
+      "take_profit_1": 2017.43233876,
+      "take_profit_2": 2050.29978501,
+      "ratio_riesgo_beneficio": 1.5,
+      "tamano_posicion_sugerido": 1.52126209,
+      "capital_en_riesgo": 100.0,
+      "contexto_macro": "neutral",
+      "datos_incompletos": [],
+      "timestamp": "2026-07-31T00:15:51.512660+00:00",
+      "estado": "abierta",
+      "resultado_r": null,
+      "disclaimer": "Señal algorítmica con fines informativos; no constituye asesoría financiera. Verifica los supuestos y gestiona tu propio riesgo antes de decidir."
+    },
     {
       "id": "dc87970b6998c95a",
       "activo": "SOLUSDT",

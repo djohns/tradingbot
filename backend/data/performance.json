@@ -1,5 +1,5 @@
 {
-  "total_signals": 1,
+  "total_signals": 2,
   "settled_signals": 0,
   "win_rate": 0,
   "average_r": 0,
@@ -9,5 +9,5 @@
     0.0
   ],
   "backtests": {},
-  "updated_at": "2026-07-30T22:19:46.635076+00:00"
+  "updated_at": "2026-07-31T00:15:49.701010+00:00"
 }
