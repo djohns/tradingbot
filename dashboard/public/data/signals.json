@@ -1,6 +1,34 @@
 {
-  "updated_at": "2026-07-31T14:40:33.490735+00:00",
+  "updated_at": "2026-07-31T16:57:27.485948+00:00",
   "signals": [
+    {
+      "id": "f7e69f3c2db41a2f",
+      "activo": "ETHUSDT",
+      "timeframe": "4h",
+      "tipo": "long",
+      "confianza": 70,
+      "razones": [
+        "Alineación EMA 20 > 50 > 200",
+        "RSI constructivo (38.3)",
+        "Estructura SMC alcista",
+        "Barrido de liquidez con rechazo",
+        "Confluencia con order block",
+        "Contexto neutral (+18.5)"
+      ],
+      "entrada_sugerida": 1863.49,
+      "stop_loss": 1823.19102944,
+      "take_profit_1": 1923.93845584,
+      "take_profit_2": 1944.08794112,
+      "ratio_riesgo_beneficio": 1.5,
+      "tamano_posicion_sugerido": 2.48145297,
+      "capital_en_riesgo": 100.0,
+      "contexto_macro": "neutral",
+      "datos_incompletos": [],
+      "timestamp": "2026-07-31T16:57:29.516116+00:00",
+      "estado": "abierta",
+      "resultado_r": null,
+      "disclaimer": "Señal algorítmica con fines informativos; no constituye asesoría financiera. Verifica los supuestos y gestiona tu propio riesgo antes de decidir."
+    },
     {
       "id": "f0dcfe3a0358d181",
       "activo": "ETHUSDT",
@@ -24,8 +52,8 @@
       "contexto_macro": "neutral",
       "datos_incompletos": [],
       "timestamp": "2026-07-31T00:15:51.512660+00:00",
-      "estado": "abierta",
-      "resultado_r": null,
+      "estado": "perdedora",
+      "resultado_r": -1.0,
       "disclaimer": "Señal algorítmica con fines informativos; no constituye asesoría financiera. Verifica los supuestos y gestiona tu propio riesgo antes de decidir."
     },
     {
