@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-07-31T07:14:34.718698+00:00",
+  "updated_at": "2026-07-31T10:00:53.688718+00:00",
   "overall_status": "operational",
   "market_data_available": true,
   "market_providers": [
@@ -10,170 +10,170 @@
     {
       "name": "Fear & Greed",
       "status": "ok",
-      "updated_at": "2026-07-31T07:14:32.033137+00:00",
-      "latency_ms": 142
+      "updated_at": "2026-07-31T10:00:00.945628+00:00",
+      "latency_ms": 317
     },
     {
       "name": "CoinGecko",
       "status": "ok",
-      "updated_at": "2026-07-31T07:14:32.200976+00:00",
-      "latency_ms": 166
+      "updated_at": "2026-07-31T10:00:07.587767+00:00",
+      "latency_ms": 6641
     },
     {
       "name": "On-chain",
       "status": "ok",
-      "updated_at": "2026-07-31T07:14:33.356450+00:00",
-      "latency_ms": 1154
+      "updated_at": "2026-07-31T10:00:08.991839+00:00",
+      "latency_ms": 1403
     },
     {
       "name": "FRED",
       "status": "ok",
-      "updated_at": "2026-07-31T07:14:34.717329+00:00",
-      "latency_ms": 1359
+      "updated_at": "2026-07-31T10:00:53.688430+00:00",
+      "latency_ms": 44695
     },
     {
       "name": "Market BTCUSDT 15m",
       "status": "ok",
-      "updated_at": "2026-07-31T07:14:34.888632+00:00",
-      "latency_ms": 165
+      "updated_at": "2026-07-31T10:00:53.954578+00:00",
+      "latency_ms": 260
     },
     {
       "name": "Market BTCUSDT 1h",
       "status": "ok",
-      "updated_at": "2026-07-31T07:14:34.925151+00:00",
-      "latency_ms": 28
+      "updated_at": "2026-07-31T10:00:54.360147+00:00",
+      "latency_ms": 397
     },
     {
       "name": "Market BTCUSDT 4h",
       "status": "ok",
-      "updated_at": "2026-07-31T07:14:35.068059+00:00",
-      "latency_ms": 136
+      "updated_at": "2026-07-31T10:00:54.538898+00:00",
+      "latency_ms": 171
     },
     {
       "name": "Market BTCUSDT 1d",
       "status": "ok",
-      "updated_at": "2026-07-31T07:14:35.187290+00:00",
-      "latency_ms": 112
+      "updated_at": "2026-07-31T10:00:54.942488+00:00",
+      "latency_ms": 396
     },
     {
       "name": "Market ticker BTCUSDT",
       "status": "ok",
-      "updated_at": "2026-07-31T07:14:35.303136+00:00",
-      "latency_ms": 109
+      "updated_at": "2026-07-31T10:00:55.104090+00:00",
+      "latency_ms": 154
     },
     {
       "name": "Market orderbook BTCUSDT",
       "status": "ok",
-      "updated_at": "2026-07-31T07:14:35.416432+00:00",
-      "latency_ms": 113
+      "updated_at": "2026-07-31T10:00:55.256779+00:00",
+      "latency_ms": 152
     },
     {
       "name": "Market ETHUSDT 15m",
       "status": "ok",
-      "updated_at": "2026-07-31T07:14:35.596857+00:00",
-      "latency_ms": 112
+      "updated_at": "2026-07-31T10:00:55.509575+00:00",
+      "latency_ms": 161
     },
     {
       "name": "Market ETHUSDT 1h",
       "status": "ok",
-      "updated_at": "2026-07-31T07:14:35.664611+00:00",
-      "latency_ms": 61
+      "updated_at": "2026-07-31T10:00:55.690947+00:00",
+      "latency_ms": 174
     },
     {
       "name": "Market ETHUSDT 4h",
       "status": "ok",
-      "updated_at": "2026-07-31T07:14:35.791617+00:00",
-      "latency_ms": 120
+      "updated_at": "2026-07-31T10:00:55.883196+00:00",
+      "latency_ms": 185
     },
     {
       "name": "Market ETHUSDT 1d",
       "status": "ok",
-      "updated_at": "2026-07-31T07:14:35.928056+00:00",
-      "latency_ms": 129
+      "updated_at": "2026-07-31T10:00:56.061830+00:00",
+      "latency_ms": 171
     },
     {
       "name": "Market ticker ETHUSDT",
       "status": "ok",
-      "updated_at": "2026-07-31T07:14:36.045450+00:00",
-      "latency_ms": 111
+      "updated_at": "2026-07-31T10:00:56.223467+00:00",
+      "latency_ms": 154
     },
     {
       "name": "Market orderbook ETHUSDT",
       "status": "ok",
-      "updated_at": "2026-07-31T07:14:36.154471+00:00",
-      "latency_ms": 109
+      "updated_at": "2026-07-31T10:00:56.377041+00:00",
+      "latency_ms": 153
     },
     {
       "name": "Market SOLUSDT 15m",
       "status": "ok",
-      "updated_at": "2026-07-31T07:14:36.290362+00:00",
-      "latency_ms": 109
+      "updated_at": "2026-07-31T10:00:56.571580+00:00",
+      "latency_ms": 161
     },
     {
       "name": "Market SOLUSDT 1h",
       "status": "ok",
-      "updated_at": "2026-07-31T07:14:36.426862+00:00",
-      "latency_ms": 130
+      "updated_at": "2026-07-31T10:00:56.740075+00:00",
+      "latency_ms": 161
     },
     {
       "name": "Market SOLUSDT 4h",
       "status": "ok",
-      "updated_at": "2026-07-31T07:14:36.555695+00:00",
-      "latency_ms": 122
+      "updated_at": "2026-07-31T10:00:56.787023+00:00",
+      "latency_ms": 40
     },
     {
       "name": "Market SOLUSDT 1d",
       "status": "ok",
-      "updated_at": "2026-07-31T07:14:36.695919+00:00",
-      "latency_ms": 133
+      "updated_at": "2026-07-31T10:00:56.834455+00:00",
+      "latency_ms": 40
     },
     {
       "name": "Market ticker SOLUSDT",
       "status": "ok",
-      "updated_at": "2026-07-31T07:14:36.807437+00:00",
-      "latency_ms": 105
+      "updated_at": "2026-07-31T10:00:56.873764+00:00",
+      "latency_ms": 32
     },
     {
       "name": "Market orderbook SOLUSDT",
       "status": "ok",
-      "updated_at": "2026-07-31T07:14:36.926749+00:00",
-      "latency_ms": 119
+      "updated_at": "2026-07-31T10:00:57.028842+00:00",
+      "latency_ms": 155
     },
     {
       "name": "Market BNBUSDT 15m",
       "status": "ok",
-      "updated_at": "2026-07-31T07:14:37.080663+00:00",
-      "latency_ms": 127
+      "updated_at": "2026-07-31T10:00:57.228040+00:00",
+      "latency_ms": 166
     },
     {
       "name": "Market BNBUSDT 1h",
       "status": "ok",
-      "updated_at": "2026-07-31T07:14:37.209462+00:00",
-      "latency_ms": 122
+      "updated_at": "2026-07-31T10:00:57.628842+00:00",
+      "latency_ms": 393
     },
     {
       "name": "Market BNBUSDT 4h",
       "status": "ok",
-      "updated_at": "2026-07-31T07:14:37.342138+00:00",
-      "latency_ms": 126
+      "updated_at": "2026-07-31T10:00:57.812605+00:00",
+      "latency_ms": 176
     },
     {
       "name": "Market BNBUSDT 1d",
       "status": "ok",
-      "updated_at": "2026-07-31T07:14:37.479309+00:00",
-      "latency_ms": 130
+      "updated_at": "2026-07-31T10:00:57.978416+00:00",
+      "latency_ms": 158
     },
     {
       "name": "Market ticker BNBUSDT",
       "status": "ok",
-      "updated_at": "2026-07-31T07:14:37.596575+00:00",
-      "latency_ms": 110
+      "updated_at": "2026-07-31T10:00:58.137740+00:00",
+      "latency_ms": 152
     },
     {
       "name": "Market orderbook BNBUSDT",
       "status": "ok",
-      "updated_at": "2026-07-31T07:14:37.703184+00:00",
-      "latency_ms": 106
+      "updated_at": "2026-07-31T10:00:58.292974+00:00",
+      "latency_ms": 155
     }
   ],
   "new_signals": 0,
@@ -182,22 +182,22 @@
       "symbol": "BTCUSDT",
       "timeframe": "1h",
       "scores": {
-        "long": 38.7,
-        "short": 28.3
+        "long": 21.7,
+        "short": 32.3
       },
       "smc": {
         "structure": {
-          "direction": "bullish",
+          "direction": "neutral",
           "event": null
         },
-        "sweep": "bullish",
+        "sweep": null,
         "order_blocks": [
           {
             "kind": "order_block",
             "direction": "bearish",
             "low": 63459.8,
             "high": 63556.3,
-            "index": 13,
+            "index": 10,
             "active": false
           },
           {
@@ -205,7 +205,7 @@
             "direction": "bearish",
             "low": 64278.8,
             "high": 64650.0,
-            "index": 38,
+            "index": 35,
             "active": true
           },
           {
@@ -213,7 +213,7 @@
             "direction": "bullish",
             "low": 63650.0,
             "high": 63976.0,
-            "index": 41,
+            "index": 38,
             "active": true
           },
           {
@@ -221,7 +221,7 @@
             "direction": "bearish",
             "low": 64255.2,
             "high": 64627.6,
-            "index": 43,
+            "index": 40,
             "active": true
           },
           {
@@ -229,7 +229,7 @@
             "direction": "bullish",
             "low": 63611.0,
             "high": 63999.9,
-            "index": 49,
+            "index": 46,
             "active": true
           }
         ],
@@ -237,33 +237,9 @@
           {
             "kind": "fvg",
             "direction": "bullish",
-            "low": 64089.5,
-            "high": 64410.4,
-            "index": 32,
-            "active": false
-          },
-          {
-            "kind": "fvg",
-            "direction": "bearish",
-            "low": 63713.6,
-            "high": 63800.0,
-            "index": 45,
-            "active": false
-          },
-          {
-            "kind": "fvg",
-            "direction": "bullish",
-            "low": 63713.6,
-            "high": 63850.0,
-            "index": 47,
-            "active": false
-          },
-          {
-            "kind": "fvg",
-            "direction": "bullish",
             "low": 63845.8,
             "high": 63896.4,
-            "index": 48,
+            "index": 45,
             "active": false
           },
           {
@@ -271,7 +247,7 @@
             "direction": "bullish",
             "low": 64099.9,
             "high": 64162.6,
-            "index": 51,
+            "index": 48,
             "active": false
           },
           {
@@ -279,15 +255,15 @@
             "direction": "bullish",
             "low": 64148.5,
             "high": 64302.0,
-            "index": 58,
-            "active": true
+            "index": 55,
+            "active": false
           },
           {
             "kind": "fvg",
             "direction": "bullish",
             "low": 64342.5,
             "high": 64570.6,
-            "index": 59,
+            "index": 56,
             "active": false
           },
           {
@@ -295,7 +271,7 @@
             "direction": "bullish",
             "low": 64630.0,
             "high": 64795.7,
-            "index": 61,
+            "index": 58,
             "active": false
           },
           {
@@ -303,7 +279,7 @@
             "direction": "bearish",
             "low": 64595.0,
             "high": 64700.1,
-            "index": 75,
+            "index": 72,
             "active": true
           },
           {
@@ -311,7 +287,31 @@
             "direction": "bearish",
             "low": 64416.9,
             "high": 64500.1,
-            "index": 76,
+            "index": 73,
+            "active": true
+          },
+          {
+            "kind": "fvg",
+            "direction": "bearish",
+            "low": 64231.6,
+            "high": 64271.0,
+            "index": 77,
+            "active": true
+          },
+          {
+            "kind": "fvg",
+            "direction": "bearish",
+            "low": 63980.3,
+            "high": 64195.4,
+            "index": 78,
+            "active": true
+          },
+          {
+            "kind": "fvg",
+            "direction": "bearish",
+            "low": 63842.4,
+            "high": 63891.9,
+            "index": 79,
             "active": true
           }
         ],
@@ -336,7 +336,7 @@
       },
       "pattern": {
         "pattern": null,
-        "confidence": 54
+        "confidence": 55
       },
       "higher_timeframe_bias": "neutral"
     },
@@ -345,21 +345,21 @@
       "timeframe": "4h",
       "scores": {
         "long": 21.7,
-        "short": 16.3
+        "short": 4.3
       },
       "smc": {
         "structure": {
           "direction": "neutral",
           "event": null
         },
-        "sweep": "bearish",
+        "sweep": null,
         "order_blocks": [
           {
             "kind": "order_block",
             "direction": "bullish",
             "low": 63774.1,
             "high": 64857.8,
-            "index": 14,
+            "index": 13,
             "active": true
           },
           {
@@ -367,7 +367,7 @@
             "direction": "bullish",
             "low": 64669.6,
             "high": 64769.9,
-            "index": 53,
+            "index": 52,
             "active": false
           },
           {
@@ -375,7 +375,7 @@
             "direction": "bearish",
             "low": 64559.2,
             "high": 65065.9,
-            "index": 59,
+            "index": 58,
             "active": true
           },
           {
@@ -383,25 +383,17 @@
             "direction": "bullish",
             "low": 63707.1,
             "high": 63928.9,
-            "index": 67,
+            "index": 66,
             "active": true
           }
         ],
         "fair_value_gaps": [
           {
             "kind": "fvg",
-            "direction": "bearish",
-            "low": 64974.2,
-            "high": 65449.0,
-            "index": 35,
-            "active": false
-          },
-          {
-            "kind": "fvg",
             "direction": "bullish",
             "low": 65221.9,
             "high": 65239.0,
-            "index": 38,
+            "index": 37,
             "active": false
           },
           {
@@ -409,7 +401,7 @@
             "direction": "bearish",
             "low": 65101.3,
             "high": 65239.0,
-            "index": 40,
+            "index": 39,
             "active": false
           },
           {
@@ -417,7 +409,7 @@
             "direction": "bearish",
             "low": 64296.9,
             "high": 64870.1,
-            "index": 41,
+            "index": 40,
             "active": false
           },
           {
@@ -425,7 +417,7 @@
             "direction": "bullish",
             "low": 64095.9,
             "high": 64132.6,
-            "index": 47,
+            "index": 46,
             "active": false
           },
           {
@@ -433,7 +425,7 @@
             "direction": "bullish",
             "low": 64576.7,
             "high": 64669.6,
-            "index": 53,
+            "index": 52,
             "active": false
           },
           {
@@ -441,7 +433,7 @@
             "direction": "bearish",
             "low": 65065.9,
             "high": 65101.7,
-            "index": 59,
+            "index": 58,
             "active": false
           },
           {
@@ -449,7 +441,7 @@
             "direction": "bearish",
             "low": 63824.3,
             "high": 64541.3,
-            "index": 61,
+            "index": 60,
             "active": false
           },
           {
@@ -457,7 +449,7 @@
             "direction": "bullish",
             "low": 64183.3,
             "high": 64300.1,
-            "index": 69,
+            "index": 68,
             "active": false
           },
           {
@@ -465,7 +457,15 @@
             "direction": "bullish",
             "low": 64188.4,
             "high": 64608.8,
-            "index": 76,
+            "index": 75,
+            "active": false
+          },
+          {
+            "kind": "fvg",
+            "direction": "bearish",
+            "low": 64493.4,
+            "high": 64670.2,
+            "index": 79,
             "active": true
           }
         ],
@@ -505,7 +505,7 @@
             "direction": "bullish",
             "low": 564.28,
             "high": 568.77,
-            "index": 14,
+            "index": 11,
             "active": true
           },
           {
@@ -513,7 +513,7 @@
             "direction": "bearish",
             "low": 570.27,
             "high": 570.92,
-            "index": 27,
+            "index": 24,
             "active": false
           }
         ],
@@ -521,17 +521,9 @@
           {
             "kind": "fvg",
             "direction": "bullish",
-            "low": 586.69,
-            "high": 588.77,
-            "index": 64,
-            "active": false
-          },
-          {
-            "kind": "fvg",
-            "direction": "bullish",
             "low": 588.59,
             "high": 591.68,
-            "index": 65,
+            "index": 62,
             "active": false
           },
           {
@@ -539,7 +531,7 @@
             "direction": "bullish",
             "low": 591.31,
             "high": 592.71,
-            "index": 66,
+            "index": 63,
             "active": false
           },
           {
@@ -547,7 +539,7 @@
             "direction": "bullish",
             "low": 593.16,
             "high": 593.67,
-            "index": 67,
+            "index": 64,
             "active": false
           },
           {
@@ -555,7 +547,7 @@
             "direction": "bearish",
             "low": 592.18,
             "high": 594.19,
-            "index": 70,
+            "index": 67,
             "active": true
           },
           {
@@ -563,7 +555,7 @@
             "direction": "bearish",
             "low": 591.43,
             "high": 593.03,
-            "index": 71,
+            "index": 68,
             "active": false
           },
           {
@@ -571,7 +563,7 @@
             "direction": "bullish",
             "low": 592.18,
             "high": 592.44,
-            "index": 72,
+            "index": 69,
             "active": false
           },
           {
@@ -579,15 +571,15 @@
             "direction": "bearish",
             "low": 589.2,
             "high": 590.44,
-            "index": 75,
-            "active": true
+            "index": 72,
+            "active": false
           },
           {
             "kind": "fvg",
             "direction": "bearish",
             "low": 587.68,
             "high": 589.25,
-            "index": 76,
+            "index": 73,
             "active": false
           },
           {
@@ -595,6 +587,14 @@
             "direction": "bullish",
             "low": 587.68,
             "high": 589.84,
+            "index": 75,
+            "active": true
+          },
+          {
+            "kind": "fvg",
+            "direction": "bullish",
+            "low": 589.84,
+            "high": 590.47,
             "index": 78,
             "active": true
           }
@@ -612,7 +612,7 @@
       },
       "pattern": {
         "pattern": "ascending_channel",
-        "confidence": 25
+        "confidence": 45
       },
       "higher_timeframe_bias": "short"
     },
@@ -621,11 +621,11 @@
       "timeframe": "4h",
       "scores": {
         "long": -4.3,
-        "short": 31.3
+        "short": 16.3
       },
       "smc": {
         "structure": {
-          "direction": "bearish",
+          "direction": "neutral",
           "event": null
         },
         "sweep": null,
@@ -635,7 +635,7 @@
             "direction": "bullish",
             "low": 563.66,
             "high": 568.85,
-            "index": 14,
+            "index": 13,
             "active": true
           },
           {
@@ -643,7 +643,7 @@
             "direction": "bullish",
             "low": 566.09,
             "high": 573.48,
-            "index": 58,
+            "index": 57,
             "active": true
           },
           {
@@ -651,7 +651,7 @@
             "direction": "bearish",
             "low": 570.19,
             "high": 575.92,
-            "index": 59,
+            "index": 58,
             "active": false
           },
           {
@@ -659,7 +659,7 @@
             "direction": "bullish",
             "low": 567.55,
             "high": 569.19,
-            "index": 71,
+            "index": 70,
             "active": true
           }
         ],
@@ -667,17 +667,9 @@
           {
             "kind": "fvg",
             "direction": "bullish",
-            "low": 565.43,
-            "high": 565.9,
-            "index": 46,
-            "active": false
-          },
-          {
-            "kind": "fvg",
-            "direction": "bullish",
             "low": 568.87,
             "high": 569.87,
-            "index": 49,
+            "index": 48,
             "active": false
           },
           {
@@ -685,7 +677,7 @@
             "direction": "bullish",
             "low": 568.63,
             "high": 570.59,
-            "index": 50,
+            "index": 49,
             "active": false
           },
           {
@@ -693,7 +685,7 @@
             "direction": "bullish",
             "low": 570.33,
             "high": 570.88,
-            "index": 51,
+            "index": 50,
             "active": false
           },
           {
@@ -701,7 +693,7 @@
             "direction": "bullish",
             "low": 571.97,
             "high": 572.48,
-            "index": 53,
+            "index": 52,
             "active": false
           },
           {
@@ -709,7 +701,7 @@
             "direction": "bearish",
             "low": 566.49,
             "high": 570.19,
-            "index": 61,
+            "index": 60,
             "active": false
           },
           {
@@ -717,7 +709,7 @@
             "direction": "bullish",
             "low": 567.0,
             "high": 568.11,
-            "index": 65,
+            "index": 64,
             "active": false
           },
           {
@@ -725,7 +717,7 @@
             "direction": "bullish",
             "low": 575.73,
             "high": 585.99,
-            "index": 76,
+            "index": 75,
             "active": true
           },
           {
@@ -733,7 +725,7 @@
             "direction": "bullish",
             "low": 590.71,
             "high": 591.68,
-            "index": 77,
+            "index": 76,
             "active": false
           },
           {
@@ -741,8 +733,16 @@
             "direction": "bullish",
             "low": 591.31,
             "high": 591.43,
-            "index": 78,
+            "index": 77,
             "active": false
+          },
+          {
+            "kind": "fvg",
+            "direction": "bearish",
+            "low": 591.31,
+            "high": 591.43,
+            "index": 79,
+            "active": true
           }
         ],
         "liquidity_levels": [
