@@ -1,14 +1,15 @@
 {
   "total_signals": 3,
-  "settled_signals": 1,
+  "settled_signals": 2,
   "win_rate": 0.0,
   "average_r": -1.0,
   "expectancy": -1.0,
-  "max_drawdown_r": 1.0,
+  "max_drawdown_r": 2.0,
   "equity_curve": [
     0.0,
-    -1.0
+    -1.0,
+    -2.0
   ],
   "backtests": {},
-  "updated_at": "2026-08-01T18:12:47.378123+00:00"
+  "updated_at": "2026-08-01T19:34:07.906894+00:00"
 }

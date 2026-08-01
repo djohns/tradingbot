@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-01T18:12:47.378123+00:00",
+  "updated_at": "2026-08-01T19:34:07.906894+00:00",
   "signals": [
     {
       "id": "f7e69f3c2db41a2f",
@@ -25,8 +25,8 @@
       "contexto_macro": "neutral",
       "datos_incompletos": [],
       "timestamp": "2026-07-31T16:57:29.516116+00:00",
-      "estado": "abierta",
-      "resultado_r": null,
+      "estado": "perdedora",
+      "resultado_r": -1.0,
       "disclaimer": "Señal algorítmica con fines informativos; no constituye asesoría financiera. Verifica los supuestos y gestiona tu propio riesgo antes de decidir."
     },
     {
