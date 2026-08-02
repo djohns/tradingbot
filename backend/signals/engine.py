@@ -38,6 +38,7 @@ def evaluate(
     frames: dict[str, pd.DataFrame],
     context: dict[str, Any],
     risk_config: dict[str, Any],
+    market_price: float | None = None,
 ) -> tuple[dict[str, Any] | None, dict[str, Any]]:
     data = frames[timeframe]
     row, previous = data.iloc[-1], data.iloc[-2]
@@ -60,12 +61,12 @@ def evaluate(
         scores["short"] += 12
         reasons["short"].append("Cruce bajista del histograma MACD")
 
-    if 30 <= row["rsi"] <= 58:
+    if 35 <= row["rsi"] <= 60 and row["rsi"] > previous["rsi"]:
         scores["long"] += 8
-        reasons["long"].append(f"RSI constructivo ({row['rsi']:.1f})")
-    if 42 <= row["rsi"] <= 70:
+        reasons["long"].append(f"RSI ascendente ({row['rsi']:.1f})")
+    elif 40 <= row["rsi"] <= 65 and row["rsi"] < previous["rsi"]:
         scores["short"] += 8
-        reasons["short"].append(f"RSI con margen bajista ({row['rsi']:.1f})")
+        reasons["short"].append(f"RSI descendente ({row['rsi']:.1f})")
 
     div = divergence(data)
     if div:
@@ -92,7 +93,8 @@ def evaluate(
     active_zones = [
         zone for zone in smc["order_blocks"] + smc["fair_value_gaps"] if zone["active"]
     ]
-    price, atr = float(row["close"]), float(row["atr"])
+    analysis_price, atr = float(row["close"]), float(row["atr"])
+    price = float(market_price) if market_price and market_price > 0 else analysis_price
     for zone in active_zones:
         if zone["low"] - atr <= price <= zone["high"] + atr:
             side = "long" if zone["direction"] == "bullish" else "short"
@@ -104,6 +106,18 @@ def evaluate(
         directional = "long" if row["close"] >= row["open"] else "short"
         scores[directional] += 8
         reasons[directional].append(f"Volumen relativo {row['relative_volume']:.1f}x")
+
+    pattern_side = {
+        "ascending_triangle": "long",
+        "ascending_channel": "long",
+        "descending_triangle": "short",
+        "descending_channel": "short",
+    }.get(pattern["pattern"])
+    if pattern_side and int(pattern["confidence"]) >= 35:
+        scores[pattern_side] += 6
+        reasons[pattern_side].append(
+            f"Patrón {str(pattern['pattern']).replace('_', ' ')}"
+        )
 
     context_score = float(context["score"])
     scores["long"] += np.clip(context_score / 5, -15, 15)
@@ -155,6 +169,7 @@ def evaluate(
         "timeframe": timeframe,
         "tipo": side,
         "confianza": confidence,
+        "puntuacion_confluencia": confidence,
         "razones": reasons[side] + [f"Contexto {context['label']} ({context_score:+.1f})"],
         "entrada_sugerida": plan.entry,
         "stop_loss": plan.stop_loss,
@@ -166,9 +181,11 @@ def evaluate(
         "contexto_macro": context["label"],
         "datos_incompletos": context["missing_sources"],
         "timestamp": timestamp,
-        "estado": "abierta",
+        "publicada_en": timestamp,
+        "vela_analizada_cierre": row["close_time"].isoformat(),
+        "precio_cierre_analizado": round(analysis_price, 8),
+        "estado": "pendiente",
         "resultado_r": None,
         "disclaimer": DISCLAIMER,
     }
     return signal, diagnostics
-

@@ -21,8 +21,8 @@ export default function SignalFeed({ signals }) {
             </div>
             <div className="signal-title">
               <h3>{signal.activo.replace("USDT", "")}<small>/USDT · {signal.timeframe}</small></h3>
-              <div className="confidence">
-                <strong>{signal.confianza}</strong><span>/100</span>
+              <div className="confidence" title="Puntuación de confluencia; no es una probabilidad calibrada">
+                <strong>{signal.puntuacion_confluencia ?? signal.confianza}</strong><span> confluencia</span>
               </div>
             </div>
             <div className="levels">
@@ -31,11 +31,22 @@ export default function SignalFeed({ signals }) {
               <div><small>Objetivo</small><strong>{money(signal.take_profit_1)}</strong></div>
             </div>
             <p className="reason">{signal.razones?.[0]}</p>
-            <footer><span>R:R {signal.ratio_riesgo_beneficio}</span><time>{dateTime(signal.timestamp)}</time></footer>
+            <footer>
+              <span>
+                {signal.resultado_r != null
+                  ? `${signal.resultado_r > 0 ? "+" : ""}${signal.resultado_r} R neto · ${money(signal.pnl_neto_usd)}`
+                  : `R:R ${signal.ratio_riesgo_beneficio}`}
+              </span>
+              <time>{dateTime(signal.timestamp)}</time>
+            </footer>
+            {signal.resultado_r != null && (
+              <div className="cost-line">
+                Costes {money(signal.costes_totales_usd)} · {signal.motivo_salida?.replaceAll("_", " ")}
+              </div>
+            )}
           </article>
         ))}
       </div>
     </section>
   );
 }
-

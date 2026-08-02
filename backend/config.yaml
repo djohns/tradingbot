@@ -19,6 +19,23 @@ risk:
   minimum_confidence: 62
   atr_stop_multiplier: 1.5
   max_open_signals_per_asset: 1
+  max_portfolio_risk_pct: 3.0
+  cooldown_bars_after_loss: 2
+execution:
+  market: binance_usdm_futures
+  # Valores conservadores configurables. Sustituir por las tasas reales de la cuenta.
+  maker_fee_rate: 0.0002
+  taker_fee_rate: 0.0005
+  entry_order_type: taker
+  exit_order_type: taker
+  bnb_fee_discount_pct: 0.0
+  spread_bps: 2.0
+  slippage_bps: 3.0
+  fallback_funding_rate: 0.0001
+  fallback_funding_interval_hours: 8
+  max_bars_open: 24
+  tp1_close_fraction: 0.5
+  move_stop_to_break_even: true
 context:
   fear_greed_weight: 0.25
   macro_weight: 0.45

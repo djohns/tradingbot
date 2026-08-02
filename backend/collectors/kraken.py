@@ -106,6 +106,13 @@ class KrakenCollector(HTTPCollector):
         ask_notional = sum(price * size for price, size in asks)
         total = bid_notional + ask_notional
         return {
+            "best_bid": bids[0][0],
+            "best_ask": asks[0][0],
+            "spread_bps": (
+                (asks[0][0] - bids[0][0]) / ((asks[0][0] + bids[0][0]) / 2) * 10_000
+                if bids and asks
+                else 0.0
+            ),
             "bid_notional": bid_notional,
             "ask_notional": ask_notional,
             "imbalance": (bid_notional - ask_notional) / total if total else 0.0,

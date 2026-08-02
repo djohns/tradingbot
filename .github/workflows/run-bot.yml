@@ -10,6 +10,7 @@ on:
         default: false
   schedule:
     - cron: "17 * * * *"
+    - cron: "47 3 * * *"
   push:
     branches: ["main"]
 
@@ -52,7 +53,7 @@ jobs:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: |
-          if [[ "${{ inputs.backtest }}" == "true" ]]; then
+          if [[ "${{ inputs.backtest }}" == "true" || "${{ github.event.schedule }}" == "47 3 * * *" ]]; then
             python -m backend.main --backtest
           else
             python -m backend.main

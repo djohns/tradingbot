@@ -21,9 +21,12 @@ con control de riesgo. Opera en modo **asesor**: nunca abre ni cierra órdenes.
 - EMA 20/50/200, RSI y divergencias, MACD, Bollinger, ATR y volumen relativo.
 - BOS/CHoCH, order blocks, fair value gaps, barridos y zonas de liquidez.
 - Triángulos y canales mediante regresión.
-- Señales long/short con confianza, razones, entrada, SL, TP1/TP2, R:R, tamaño
+- Señales long/short con puntuación de confluencia, razones, entrada, SL, TP1/TP2, R:R, tamaño
   máximo sugerido y disclaimer.
-- SQLite para deduplicación, histórico y liquidación de señales.
+- SQLite para deduplicación, histórico y liquidación auditable de señales.
+- Ejecución simulada Binance USDⓈ-M con comisiones maker/taker, spread,
+  slippage y funding histórico público (o fallback explícitamente estimado).
+- Salida parcial en TP1, stop a break-even, TP2 real y cierre temporal.
 - Backtesting con win rate, expectancy, profit factor, drawdown y métricas por
   régimen.
 - Alertas opcionales por Telegram.
@@ -116,6 +119,13 @@ Edita `backend/config.yaml` para cambiar:
 - `risk.minimum_rr`: ratio riesgo/beneficio mínimo.
 - `risk.minimum_confidence`: umbral de publicación.
 - `risk.max_open_signals_per_asset`: evita acumular señales duplicadas.
+- `risk.max_portfolio_risk_pct`: limita el riesgo agregado de señales correlacionadas.
+- `risk.cooldown_bars_after_loss`: pausa nuevas entradas tras un stop.
+- `execution.maker_fee_rate` / `taker_fee_rate`: comisión de tu nivel de Binance.
+- `execution.spread_bps` / `slippage_bps`: hipótesis conservadoras de ejecución.
+- `execution.bnb_fee_discount_pct`: descuento aplicable si pagas comisiones con BNB.
+- `execution.max_bars_open`: vencimiento temporal de la operación.
+- `execution.tp1_close_fraction`: fracción liquidada en TP1; el resto busca TP2.
 
 El tamaño sugerido se calcula como:
 
@@ -126,6 +136,21 @@ El tamaño sugerido se calcula como:
 El stop usa estructura reciente y ATR. Cambiar los parámetros no garantiza
 rentabilidad; ejecuta backtests y pruebas fuera de muestra antes de usar una
 configuración.
+
+### Costes de Binance Futures
+
+El perfil incluido asume USDⓈ-M Futures, nivel VIP 0 y órdenes taker de forma
+conservadora. Las tasas son configurables porque Binance las determina según
+producto, nivel VIP, promociones y uso de BNB. El bot no accede a la cuenta ni
+envía órdenes: calcula comisiones sobre el notional simulado de cada fill.
+
+Al cerrar una señal consulta el historial público de funding de Binance para el
+contrato y periodo exactos. Si el endpoint no está disponible desde GitHub
+Actions, usa `fallback_funding_rate` y marca el resultado como estimado. El
+funding conserva su signo: puede ser un coste o un ingreso.
+
+Cada cierre guarda precio y fecha de salida, motivo, legs parciales, PnL bruto,
+PnL neto, comisiones, impacto de spread/slippage, funding, MFE, MAE y duración.
 
 ## Variables y secretos
 
@@ -224,11 +249,18 @@ usa UTC y puede tener demoras. Para cada 30 minutos:
 No conviene usar menos de 15 minutos: aumenta rate limits y no aporta precisión
 si las señales se evalúan al cierre de 1h/4h.
 
+Además, el workflow ejecuta el backtest completo una vez al día a las 03:47 UTC.
+Las ejecuciones horarias conservan el último backtest publicado hasta que el
+siguiente cálculo diario lo reemplaza.
+
 ## Backtesting y lectura de métricas
 
-`python -m backend.main --backtest` simula cruces confirmados por tendencia,
-resuelve SL/TP usando OHLC posteriores y trata una vela que toca ambos niveles
-como pérdida (supuesto conservador). Reporta:
+`python -m backend.main --backtest` recorre temporalmente la misma puntuación
+técnica que usa el motor en vivo, entra en la apertura siguiente, aplica la
+gestión TP1/TP2 y calcula el resultado neto con costes. El contexto histórico
+macro/on-chain se mantiene neutral para evitar usar el contexto actual como
+información futura. Una vela que toca stop y objetivo se trata como pérdida.
+Reporta:
 
 - win rate;
 - R promedio y expectancy;
@@ -236,10 +268,10 @@ como pérdida (supuesto conservador). Reporta:
 - drawdown máximo en múltiplos R;
 - desglose alcista, bajista y lateral.
 
-Este backtest es una validación inicial, no una prueba definitiva: no modela
-comisiones, slippage intravela, latencia, impuestos ni liquidez real. Para una
-decisión seria, añade datos más extensos, comisiones del exchange y validación
-walk-forward.
+Este backtest sigue siendo una aproximación: modela comisiones, spread,
+slippage y funding, pero no conoce los fills de la cuenta, profundidad histórica
+completa, latencia personal ni impuestos. Para una decisión seria se necesitan
+datos más extensos y validación walk-forward fuera de muestra.
 
 ## Decisiones de seguridad
 

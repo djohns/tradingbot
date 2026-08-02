@@ -95,6 +95,7 @@ main { max-width: 1440px; margin: 0 auto; padding: 46px 24px 72px; }
 .levels strong { margin-top: 4px; font: 10px "DM Mono"; }
 .reason { color: #9ca6ae; font-size: 10px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .signal-card footer { color: var(--muted); font: 8px "DM Mono"; }
+.cost-line { margin-top: 7px; color: #76828c; font: 8px "DM Mono"; text-transform: uppercase; }
 .metric-grid, .context-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; margin-top: 22px; background: var(--line); border: 1px solid var(--line); }
 .metric-grid div, .context-grid div { padding: 12px; background: #0b1016; }
 .metric-grid small, .metric-grid strong, .context-grid small, .context-grid strong { display: block; }
@@ -143,4 +144,3 @@ main { max-width: 1440px; margin: 0 auto; padding: 46px 24px 72px; }
   .metric-grid { grid-template-columns: repeat(2, 1fr); }
   .site-footer { padding: 24px 16px; display: block; line-height: 1.5; }
 }
-

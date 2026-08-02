@@ -67,22 +67,39 @@ class Storage:
 
     def open_for_asset(self, symbol: str) -> list[dict[str, Any]]:
         rows = self.connection.execute(
-            "SELECT payload FROM signals WHERE symbol = ? AND status = 'abierta'",
+            """SELECT payload FROM signals
+            WHERE symbol = ? AND status IN ('pendiente', 'abierta', 'parcial')""",
             (symbol,),
         ).fetchall()
         return [json.loads(row["payload"]) for row in rows]
 
-    def settle(self, signal_id: str, status: str, result_r: float) -> None:
+    def update_signal(self, signal_id: str, changes: dict[str, Any]) -> None:
         row = self.connection.execute(
             "SELECT payload FROM signals WHERE id = ?", (signal_id,)
         ).fetchone()
         if not row:
             return
         payload = json.loads(row["payload"])
-        payload["estado"] = status
-        payload["resultado_r"] = result_r
+        payload.update(changes)
         self.connection.execute(
             "UPDATE signals SET status = ?, result_r = ?, payload = ? WHERE id = ?",
-            (status, result_r, json.dumps(payload, ensure_ascii=False), signal_id),
+            (
+                payload["estado"],
+                payload.get("resultado_r"),
+                json.dumps(payload, ensure_ascii=False),
+                signal_id,
+            ),
         )
         self.connection.commit()
+
+    def settle(
+        self,
+        signal_id: str,
+        status: str,
+        result_r: float,
+        details: dict[str, Any] | None = None,
+    ) -> None:
+        self.update_signal(
+            signal_id,
+            {"estado": status, "resultado_r": result_r, **(details or {})},
+        )
