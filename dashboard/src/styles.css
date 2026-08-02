@@ -73,8 +73,20 @@ main { max-width: 1440px; margin: 0 auto; padding: 46px 24px 72px; }
 .legend .lime { color: var(--lime); } .legend .blue { color: #54b8ff; } .legend .violet { color: #aa7dff; } .legend .orange { color: #f5a65b; } .legend .gold { color: #ffcf5a; }
 .signal-panel { grid-row: span 2; }
 .count-badge { min-width: 29px; padding: 6px 8px; text-align: center; border: 1px solid var(--line); color: var(--lime); font: 11px "DM Mono"; }
-.signal-list { display: flex; flex-direction: column; gap: 9px; margin-top: 20px; max-height: 798px; overflow-y: auto; padding-right: 3px; }
+.signal-list { display: flex; flex-direction: column; gap: 24px; margin-top: 20px; max-height: 798px; overflow-y: auto; padding-right: 5px; }
+.signal-group { display: flex; flex-direction: column; gap: 10px; }
+.signal-group + .signal-group { padding-top: 22px; border-top: 1px solid #29313a; }
+.signal-group-heading { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 0 2px; }
+.signal-group-heading h3 { display: flex; align-items: center; gap: 8px; margin: 0; color: #dce5e9; font: 600 12px "Syne"; letter-spacing: .02em; }
+.signal-group-heading h3 i { width: 7px; height: 7px; border-radius: 50%; background: var(--green); box-shadow: 0 0 10px rgba(67, 219, 175, .5); }
+.history-group .signal-group-heading h3 i { background: #66727c; box-shadow: none; }
+.signal-group-heading p { margin: 5px 0 0 15px; color: var(--muted); font: 8px "DM Mono"; }
+.signal-group-heading > span { min-width: 25px; padding: 4px 7px; text-align: center; color: var(--green); border: 1px solid #244239; background: #101d1a; font: 9px "DM Mono"; }
+.history-group .signal-group-heading > span { color: #9ba6ae; border-color: var(--line); background: #11171d; }
+.signal-group-items { display: flex; flex-direction: column; gap: 9px; }
 .signal-card { position: relative; padding: 15px; border: 1px solid var(--line); background: #0a0f14; overflow: hidden; }
+.signal-card.active { border-color: #28443c; background: linear-gradient(100deg, rgba(24, 52, 44, .24), #0a0f14 42%); }
+.signal-card.historical { background: #090d12; }
 .signal-card::before { content: ""; position: absolute; inset: 0 auto 0 0; width: 2px; background: var(--green); }
 .signal-card.short::before { background: var(--red); }
 .signal-top, .signal-title, .signal-card footer { display: flex; align-items: center; justify-content: space-between; }
@@ -116,6 +128,7 @@ main { max-width: 1440px; margin: 0 auto; padding: 46px 24px 72px; }
 .context-grid strong { font-size: 12px; }
 .data-warning, .error-banner { padding: 10px 12px; color: #f1c07a; background: #302515; font: 9px "DM Mono"; }
 .empty-state { display: grid; place-items: center; min-height: 140px; color: var(--muted); font: 11px "DM Mono"; text-align: center; }
+.empty-state.compact { min-height: 78px; padding: 16px; border: 1px dashed #28313a; background: #0a0e13; font-size: 9px; }
 .loading { display: flex; justify-content: center; align-items: center; gap: 10px; min-height: 300px; color: var(--muted); font: 11px "DM Mono"; }
 .loading span { width: 8px; height: 8px; background: var(--lime); animation: blink 1s infinite alternate; }
 @keyframes blink { to { opacity: .2; } }
