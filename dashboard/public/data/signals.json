@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-03T17:21:10.587392+00:00",
+  "updated_at": "2026-08-03T19:58:02.615070+00:00",
   "signals": [
     {
       "id": "202be47919476825",
@@ -30,8 +30,8 @@
       "publicada_en": "2026-08-03T11:44:21.755694+00:00",
       "vela_analizada_cierre": "2026-08-03T11:00:00+00:00",
       "precio_cierre_analizado": 72.65,
-      "estado": "abierta",
-      "resultado_r": null,
+      "estado": "perdedora",
+      "resultado_r": -0.6764,
       "disclaimer": "Señal algorítmica con fines informativos; no constituye asesoría financiera. Verifica los supuestos y gestiona tu propio riesgo antes de decidir.",
       "abierta_en": "2026-08-03T11:44:21.755694+00:00",
       "precio_mercado_publicacion": 72.54,
@@ -42,7 +42,40 @@
       "modelo_ejecucion": "binance_usdm_futures",
       "comision_maker": 0.0002,
       "comision_taker": 0.0005,
-      "descuento_bnb_pct": 0.0
+      "descuento_bnb_pct": 0.0,
+      "salidas": [
+        {
+          "fraction": 1.0,
+          "price": 73.64,
+          "reason": "time_stop",
+          "reference_price": 73.64,
+          "executed_price": 73.67224217,
+          "quantity": 54.99982117
+        }
+      ],
+      "pnl_bruto_usd": -60.4998,
+      "pnl_ejecucion_usd": -64.0199,
+      "comisiones_usd": 4.02,
+      "impacto_spread_slippage_usd": 3.5201,
+      "funding_usd": -0.399,
+      "costes_totales_usd": 7.1411,
+      "pnl_neto_usd": -67.6409,
+      "resultado_bruto_r": -0.605,
+      "funding_eventos": [
+        {
+          "time": "2026-08-03T16:00:00+00:00",
+          "rate": 0.0001,
+          "mark_price": 72.54,
+          "payment_usd": -0.398969,
+          "source": "configured_estimate"
+        }
+      ],
+      "calidad_costes": "estimated_funding_modelled_execution",
+      "cerrada_en": "2026-08-03T17:45:00+00:00",
+      "motivo_salida": "time_stop",
+      "duracion_horas": 6.01,
+      "mfe_r": 0.0705,
+      "mae_r": 0.727
     },
     {
       "id": "19c8edf1e39d1016",
