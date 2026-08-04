@@ -129,18 +129,18 @@
   "backtests": {
     "BTCUSDT": {
       "total_trades": 5,
-      "win_rate": 20.0,
-      "average_r": -0.512,
-      "expectancy": -0.512,
-      "max_drawdown_r": 2.867,
-      "profit_factor": 0.108,
+      "win_rate": 0.0,
+      "average_r": -0.805,
+      "expectancy": -0.805,
+      "max_drawdown_r": 4.027,
+      "profit_factor": 0.0,
       "equity_curve": [
         0.0,
         -0.689,
         -1.019,
         -2.16,
         -2.867,
-        -2.558
+        -4.027
       ],
       "by_regime": {
         "alcista": {
@@ -167,23 +167,23 @@
         },
         "lateral": {
           "total_trades": 5,
-          "win_rate": 20.0,
-          "average_r": -0.512,
-          "expectancy": -0.512,
-          "max_drawdown_r": 2.867,
-          "profit_factor": 0.108,
+          "win_rate": 0.0,
+          "average_r": -0.805,
+          "expectancy": -0.805,
+          "max_drawdown_r": 4.027,
+          "profit_factor": 0.0,
           "equity_curve": [
             0.0,
             -0.689,
             -1.019,
             -2.16,
             -2.867,
-            -2.558
+            -4.027
           ]
         }
       },
-      "total_costs_usd": 52.53,
-      "net_pnl_usd": -255.78,
+      "total_costs_usd": 51.73,
+      "net_pnl_usd": -402.66,
       "context_assumption": "neutral_no_historical_context",
       "trades": [
         {
@@ -233,39 +233,37 @@
         {
           "side": "short",
           "entry_time": "2026-08-03T03:00:00+00:00",
-          "exit_time": "2026-08-03T06:00:00+00:00",
-          "exit_reason": "time_stop",
-          "result_r": 0.309,
-          "gross_result_r": 0.4768,
-          "net_pnl_usd": 30.9018,
-          "costs_usd": 16.7815,
+          "exit_time": "2026-08-03T15:00:00+00:00",
+          "exit_reason": "stop_loss",
+          "result_r": -1.1598,
+          "gross_result_r": -1.0,
+          "net_pnl_usd": -115.9797,
+          "costs_usd": 15.9797,
           "regime": "lateral"
         }
       ]
     },
     "ETHUSDT": {
-      "total_trades": 2,
-      "win_rate": 50.0,
-      "average_r": 0.226,
-      "expectancy": 0.226,
-      "max_drawdown_r": 1.13,
-      "profit_factor": 1.4,
+      "total_trades": 1,
+      "win_rate": 100.0,
+      "average_r": 1.582,
+      "expectancy": 1.582,
+      "max_drawdown_r": 0.0,
+      "profit_factor": 999,
       "equity_curve": [
         0.0,
-        -1.13,
-        0.452
+        1.582
       ],
       "by_regime": {
         "alcista": {
-          "total_trades": 1,
+          "total_trades": 0,
           "win_rate": 0.0,
-          "average_r": -1.13,
-          "expectancy": -1.13,
-          "max_drawdown_r": 1.13,
+          "average_r": 0.0,
+          "expectancy": 0.0,
+          "max_drawdown_r": 0.0,
           "profit_factor": 0.0,
           "equity_curve": [
-            0.0,
-            -1.13
+            0.0
           ]
         },
         "bajista": {
@@ -292,21 +290,10 @@
           ]
         }
       },
-      "total_costs_usd": 29.79,
-      "net_pnl_usd": 45.21,
+      "total_costs_usd": 16.78,
+      "net_pnl_usd": 158.22,
       "context_assumption": "neutral_no_historical_context",
       "trades": [
-        {
-          "side": "long",
-          "entry_time": "2026-07-22T23:00:00+00:00",
-          "exit_time": "2026-07-23T13:00:00+00:00",
-          "exit_reason": "stop_loss",
-          "result_r": -1.1301,
-          "gross_result_r": -1.0,
-          "net_pnl_usd": -113.0113,
-          "costs_usd": 13.0113,
-          "regime": "alcista"
-        },
         {
           "side": "short",
           "entry_time": "2026-08-01T16:00:00+00:00",
@@ -323,18 +310,18 @@
     "SOLUSDT": {
       "total_trades": 6,
       "win_rate": 16.67,
-      "average_r": -0.397,
-      "expectancy": -0.397,
-      "max_drawdown_r": 2.383,
-      "profit_factor": 0.332,
+      "average_r": -0.327,
+      "expectancy": -0.327,
+      "max_drawdown_r": 2.632,
+      "profit_factor": 0.377,
       "equity_curve": [
         0.0,
-        -1.145,
-        -1.661,
-        -0.474,
-        -1.558,
-        -1.597,
-        -2.383
+        -0.516,
+        0.67,
+        -0.413,
+        -0.452,
+        -1.239,
+        -1.962
       ],
       "by_regime": {
         "alcista": {
@@ -362,36 +349,25 @@
         "lateral": {
           "total_trades": 6,
           "win_rate": 16.67,
-          "average_r": -0.397,
-          "expectancy": -0.397,
-          "max_drawdown_r": 2.383,
-          "profit_factor": 0.332,
+          "average_r": -0.327,
+          "expectancy": -0.327,
+          "max_drawdown_r": 2.632,
+          "profit_factor": 0.377,
           "equity_curve": [
             0.0,
-            -1.145,
-            -1.661,
-            -0.474,
-            -1.558,
-            -1.597,
-            -2.383
+            -0.516,
+            0.67,
+            -0.413,
+            -0.452,
+            -1.239,
+            -1.962
           ]
         }
       },
-      "total_costs_usd": 42.84,
-      "net_pnl_usd": -238.33,
+      "total_costs_usd": 35.1,
+      "net_pnl_usd": -196.17,
       "context_assumption": "neutral_no_historical_context",
       "trades": [
-        {
-          "side": "long",
-          "entry_time": "2026-07-22T22:00:00+00:00",
-          "exit_time": "2026-07-23T13:00:00+00:00",
-          "exit_reason": "stop_loss",
-          "result_r": -1.1449,
-          "gross_result_r": -1.0,
-          "net_pnl_usd": -114.4885,
-          "costs_usd": 14.4885,
-          "regime": "lateral"
-        },
         {
           "side": "short",
           "entry_time": "2026-07-25T09:00:00+00:00",
@@ -446,23 +422,33 @@
           "net_pnl_usd": -78.6462,
           "costs_usd": 5.6134,
           "regime": "lateral"
+        },
+        {
+          "side": "short",
+          "entry_time": "2026-08-03T11:00:00+00:00",
+          "exit_time": "2026-08-04T06:00:00+00:00",
+          "exit_reason": "time_stop",
+          "result_r": -0.7233,
+          "gross_result_r": -0.6559,
+          "net_pnl_usd": -72.3293,
+          "costs_usd": 6.7437,
+          "regime": "lateral"
         }
       ]
     },
     "BNBUSDT": {
-      "total_trades": 5,
-      "win_rate": 20.0,
-      "average_r": -0.687,
-      "expectancy": -0.687,
-      "max_drawdown_r": 3.436,
-      "profit_factor": 0.014,
+      "total_trades": 4,
+      "win_rate": 25.0,
+      "average_r": -0.556,
+      "expectancy": -0.556,
+      "max_drawdown_r": 2.276,
+      "profit_factor": 0.022,
       "equity_curve": [
         0.0,
-        -1.21,
-        -1.16,
-        -1.185,
-        -2.302,
-        -3.436
+        0.05,
+        0.025,
+        -1.092,
+        -2.226
       ],
       "by_regime": {
         "alcista": {
@@ -489,36 +475,24 @@
           ]
         },
         "lateral": {
-          "total_trades": 4,
-          "win_rate": 25.0,
-          "average_r": -0.575,
-          "expectancy": -0.575,
-          "max_drawdown_r": 2.302,
-          "profit_factor": 0.021,
+          "total_trades": 3,
+          "win_rate": 33.33,
+          "average_r": -0.364,
+          "expectancy": -0.364,
+          "max_drawdown_r": 1.142,
+          "profit_factor": 0.044,
           "equity_curve": [
             0.0,
-            -1.21,
-            -1.16,
-            -1.185,
-            -2.302
+            0.05,
+            0.025,
+            -1.092
           ]
         }
       },
-      "total_costs_usd": 65.16,
-      "net_pnl_usd": -343.64,
+      "total_costs_usd": 44.13,
+      "net_pnl_usd": -222.61,
       "context_assumption": "neutral_no_historical_context",
       "trades": [
-        {
-          "side": "short",
-          "entry_time": "2026-07-23T08:00:00+00:00",
-          "exit_time": "2026-07-23T12:00:00+00:00",
-          "exit_reason": "stop_loss",
-          "result_r": -1.2103,
-          "gross_result_r": -1.0,
-          "net_pnl_usd": -121.0297,
-          "costs_usd": 21.0297,
-          "regime": "lateral"
-        },
         {
           "side": "short",
           "entry_time": "2026-07-24T12:00:00+00:00",
@@ -566,5 +540,5 @@
       ]
     }
   },
-  "updated_at": "2026-08-04T03:36:48.010830+00:00"
+  "updated_at": "2026-08-04T06:16:11.440167+00:00"
 }
