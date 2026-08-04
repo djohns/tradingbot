@@ -1,6 +1,49 @@
 {
-  "updated_at": "2026-08-04T15:35:34.672250+00:00",
+  "updated_at": "2026-08-04T18:03:40.712483+00:00",
   "signals": [
+    {
+      "id": "81001835300da1ef",
+      "activo": "BNBUSDT",
+      "timeframe": "4h",
+      "tipo": "long",
+      "confianza": 73,
+      "puntuacion_confluencia": 73,
+      "razones": [
+        "Alineación EMA 20 > 50 > 200",
+        "RSI ascendente (59.6)",
+        "Estructura SMC alcista",
+        "Confluencia con fvg",
+        "Volumen relativo 1.2x",
+        "Patrón ascending channel",
+        "Contexto expansivo (+23.4)"
+      ],
+      "entrada_sugerida": 593.57,
+      "stop_loss": 573.23424606,
+      "take_profit_1": 624.07363091,
+      "take_profit_2": 634.24150787,
+      "ratio_riesgo_beneficio": 1.5,
+      "tamano_posicion_sugerido": 4.91744738,
+      "capital_en_riesgo": 100.0,
+      "contexto_macro": "expansivo",
+      "datos_incompletos": [],
+      "timestamp": "2026-08-04T18:03:44.044793+00:00",
+      "publicada_en": "2026-08-04T18:03:44.044793+00:00",
+      "vela_analizada_cierre": "2026-08-04T16:00:00+00:00",
+      "precio_cierre_analizado": 593.52,
+      "estado": "abierta",
+      "resultado_r": null,
+      "disclaimer": "Señal algorítmica con fines informativos; no constituye asesoría financiera. Verifica los supuestos y gestiona tu propio riesgo antes de decidir.",
+      "abierta_en": "2026-08-04T18:03:44.044793+00:00",
+      "precio_mercado_publicacion": 593.57,
+      "entrada_ejecutada": 593.91305571,
+      "tipo_entrada": "taker",
+      "spread_bps_aplicado": 5.5591,
+      "slippage_bps_aplicado": 3.0,
+      "modelo_ejecucion": "binance_usdm_futures",
+      "comision_maker": 0.0002,
+      "comision_taker": 0.0005,
+      "descuento_bnb_pct": 0.0
+    },
     {
       "id": "d7daa1c250bd4223",
       "activo": "BTCUSDT",
@@ -30,8 +73,8 @@
       "publicada_en": "2026-08-04T09:50:45.845485+00:00",
       "vela_analizada_cierre": "2026-08-04T08:00:00+00:00",
       "precio_cierre_analizado": 63692.0,
-      "estado": "abierta",
-      "resultado_r": null,
+      "estado": "perdedora",
+      "resultado_r": -0.3569,
       "disclaimer": "Señal algorítmica con fines informativos; no constituye asesoría financiera. Verifica los supuestos y gestiona tu propio riesgo antes de decidir.",
       "abierta_en": "2026-08-04T09:50:45.845485+00:00",
       "precio_mercado_publicacion": 63583.5,
@@ -42,7 +85,40 @@
       "modelo_ejecucion": "binance_usdm_futures",
       "comision_maker": 0.0002,
       "comision_taker": 0.0005,
-      "descuento_bnb_pct": 0.0
+      "descuento_bnb_pct": 0.0,
+      "salidas": [
+        {
+          "fraction": 1.0,
+          "price": 64150.0,
+          "reason": "time_stop",
+          "reference_price": 64150.0,
+          "executed_price": 64175.66,
+          "quantity": 0.05286487
+        }
+      ],
+      "pnl_bruto_usd": -29.9479,
+      "pnl_ejecucion_usd": -32.649,
+      "comisiones_usd": 3.3763,
+      "impacto_spread_slippage_usd": 2.701,
+      "funding_usd": -0.3361,
+      "costes_totales_usd": 5.7412,
+      "pnl_neto_usd": -35.6892,
+      "resultado_bruto_r": -0.2995,
+      "funding_eventos": [
+        {
+          "time": "2026-08-04T16:00:00+00:00",
+          "rate": 0.0001,
+          "mark_price": 63583.5,
+          "payment_usd": -0.336133,
+          "source": "configured_estimate"
+        }
+      ],
+      "calidad_costes": "estimated_funding_modelled_execution",
+      "cerrada_en": "2026-08-04T16:00:00+00:00",
+      "motivo_salida": "time_stop",
+      "duracion_horas": 6.15,
+      "mfe_r": 0.0485,
+      "mae_r": 0.3471
     },
     {
       "id": "202be47919476825",

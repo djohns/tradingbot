@@ -1,17 +1,17 @@
 {
-  "total_signals": 7,
-  "settled_signals": 6,
+  "total_signals": 8,
+  "settled_signals": 7,
   "win_rate": 0.0,
   "win_rate_95ci": [
     0,
-    39.03
+    35.43
   ],
-  "average_r": -0.731,
-  "expectancy": -0.731,
-  "max_drawdown_r": 4.389,
+  "average_r": -0.678,
+  "expectancy": -0.678,
+  "max_drawdown_r": 4.746,
   "profit_factor": 0.0,
-  "total_costs_usd": 52.36,
-  "net_pnl_usd": -438.88,
+  "total_costs_usd": 58.11,
+  "net_pnl_usd": -474.57,
   "equity_curve": [
     0.0,
     -0.122,
@@ -19,7 +19,8 @@
     -2.273,
     -3.502,
     -3.713,
-    -4.389
+    -4.389,
+    -4.746
   ],
   "gross_equity_curve": [
     0.0,
@@ -28,7 +29,8 @@
     -2.09,
     -3.09,
     -3.26,
-    -3.865
+    -3.865,
+    -4.165
   ],
   "equity_curve_usd": [
     0.0,
@@ -37,7 +39,8 @@
     -227.26,
     -350.14,
     -371.24,
-    -438.88
+    -438.88,
+    -474.57
   ],
   "sample_status": "insuficiente",
   "execution_model": {
@@ -56,19 +59,19 @@
     "move_stop_to_break_even": true
   },
   "by_asset": {
+    "BTCUSDT": {
+      "trades": 3,
+      "win_rate": 0.0,
+      "net_r": -1.797,
+      "net_pnl_usd": -179.67,
+      "costs_usd": 32.67
+    },
     "SOLUSDT": {
       "trades": 2,
       "win_rate": 0.0,
       "net_r": -0.798,
       "net_pnl_usd": -79.83,
       "costs_usd": 10.36
-    },
-    "BTCUSDT": {
-      "trades": 2,
-      "win_rate": 0.0,
-      "net_r": -1.44,
-      "net_pnl_usd": -143.98,
-      "costs_usd": 26.93
     },
     "ETHUSDT": {
       "trades": 2,
@@ -79,28 +82,28 @@
     }
   },
   "by_timeframe": {
+    "4h": {
+      "trades": 5,
+      "win_rate": 0.0,
+      "net_r": -2.841,
+      "net_pnl_usd": -284.05,
+      "costs_usd": 28.09
+    },
     "1h": {
       "trades": 2,
       "win_rate": 0.0,
       "net_r": -1.905,
       "net_pnl_usd": -190.52,
       "costs_usd": 30.02
-    },
-    "4h": {
-      "trades": 4,
-      "win_rate": 0.0,
-      "net_r": -2.484,
-      "net_pnl_usd": -248.36,
-      "costs_usd": 22.34
     }
   },
   "by_side": {
     "short": {
-      "trades": 4,
+      "trades": 5,
       "win_rate": 0.0,
-      "net_r": -2.238,
-      "net_pnl_usd": -223.8,
-      "costs_usd": 37.29
+      "net_r": -2.595,
+      "net_pnl_usd": -259.49,
+      "costs_usd": 43.03
     },
     "long": {
       "trades": 2,
@@ -112,11 +115,11 @@
   },
   "by_exit_reason": {
     "time_stop": {
-      "trades": 3,
+      "trades": 4,
       "win_rate": 0.0,
-      "net_r": -1.009,
-      "net_pnl_usd": -100.92,
-      "costs_usd": 14.41
+      "net_r": -1.366,
+      "net_pnl_usd": -136.61,
+      "costs_usd": 20.15
     },
     "stop_loss": {
       "trades": 3,
@@ -540,5 +543,5 @@
       ]
     }
   },
-  "updated_at": "2026-08-04T15:35:34.672250+00:00"
+  "updated_at": "2026-08-04T18:03:40.712483+00:00"
 }
