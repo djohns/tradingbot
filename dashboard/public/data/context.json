@@ -1,7 +1,7 @@
 {
-  "score": 9.9,
-  "label": "neutral",
-  "macro_score": 0.0,
+  "score": 23.9,
+  "label": "expansivo",
+  "macro_score": 31.1,
   "fear_greed": {
     "value": 27,
     "classification": "Fear",
@@ -14,17 +14,17 @@
     "total_market_cap_usd": 2271758931599.713
   },
   "onchain": {
-    "mempool_transactions": 86426.0,
-    "mempool_vsize": 42918350.0,
-    "fastest_fee": 2.0,
+    "mempool_transactions": 84848.0,
+    "mempool_vsize": 42393522.0,
+    "fastest_fee": 1.0,
     "hashrate_7d_change_pct": 10.273165428591934
   },
   "macro_reasons": [
-    "FRED no disponible; contexto macro neutral"
+    "Dólar 20 períodos: -0.82%",
+    "M2 3 períodos: +2.11%",
+    "Curva 10Y-2Y: +0.43"
   ],
-  "missing_sources": [
-    "fred"
-  ],
+  "missing_sources": [],
   "social": {},
-  "updated_at": "2026-08-05T01:24:07.997362+00:00"
+  "updated_at": "2026-08-05T01:25:49.892282+00:00"
 }
