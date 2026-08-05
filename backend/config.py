@@ -27,10 +27,24 @@ def load_config(path: str | None = None) -> dict[str, Any]:
     ):
         raw = Path(config[section][key])
         config[section][key] = str(raw if raw.is_absolute() else ROOT / raw)
+
+    numeric_overrides = {
+        "BINANCE_MAKER_FEE_RATE": ("execution", "maker_fee_rate"),
+        "BINANCE_TAKER_FEE_RATE": ("execution", "taker_fee_rate"),
+        "BINANCE_BNB_FEE_DISCOUNT_PCT": ("execution", "bnb_fee_discount_pct"),
+    }
+    for environment, (section, key) in numeric_overrides.items():
+        value = os.getenv(environment, "").strip()
+        if value:
+            config[section][key] = float(value)
+    mode = os.getenv("BOT_STRATEGY_MODE", "").strip().lower()
+    if mode:
+        if mode not in {"shadow", "live"}:
+            raise ValueError("BOT_STRATEGY_MODE must be shadow or live")
+        config["strategy_v2"]["mode"] = mode
     return config
 
 
 def secret(name: str) -> str | None:
     value = os.getenv(name, "").strip()
     return value or None
-

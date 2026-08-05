@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from datetime import datetime
+from datetime import datetime, timezone
 from typing import Any
 
 from .base import HTTPCollector
@@ -24,6 +24,34 @@ class BinanceFuturesCollector(HTTPCollector):
             "best_ask": ask,
             "mid_price": mid,
             "spread_bps": (ask - bid) / mid * 10_000 if mid else 0.0,
+        }
+
+    def derivatives_snapshot(self, symbol: str) -> dict[str, Any]:
+        premium = self._request("premiumIndex", {"symbol": symbol.upper()})
+        interest = self._request("openInterest", {"symbol": symbol.upper()})
+        try:
+            funding_info = self._request("fundingInfo", {})
+        except Exception:
+            funding_info = []
+        adjusted = next(
+            (item for item in funding_info if item.get("symbol") == symbol.upper()),
+            {},
+        )
+        return {
+            "symbol": symbol.upper(),
+            "mark_price": float(premium["markPrice"]),
+            "index_price": float(premium["indexPrice"]),
+            "premium_bps": (
+                (float(premium["markPrice"]) / float(premium["indexPrice"]) - 1) * 10_000
+                if float(premium["indexPrice"]) else 0.0
+            ),
+            "funding_rate": float(premium.get("lastFundingRate") or 0),
+            "next_funding_time": datetime.fromtimestamp(
+                int(premium["nextFundingTime"]) / 1000, tz=timezone.utc
+            ).isoformat(),
+            "funding_interval_hours": int(adjusted.get("fundingIntervalHours", 8)),
+            "open_interest": float(interest["openInterest"]),
+            "source": "binance_usdm_futures",
         }
 
     def funding_history(

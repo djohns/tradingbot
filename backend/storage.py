@@ -68,7 +68,7 @@ class Storage:
     def open_for_asset(self, symbol: str) -> list[dict[str, Any]]:
         rows = self.connection.execute(
             """SELECT payload FROM signals
-            WHERE symbol = ? AND status IN ('pendiente', 'abierta', 'parcial')""",
+            WHERE symbol = ? AND status IN ('pendiente', 'abierta', 'parcial', 'sombra')""",
             (symbol,),
         ).fetchall()
         return [json.loads(row["payload"]) for row in rows]

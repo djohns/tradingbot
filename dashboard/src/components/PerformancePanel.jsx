@@ -9,19 +9,21 @@ import {
 } from "recharts";
 
 export default function PerformancePanel({ performance }) {
-  const data = (performance?.equity_curve || [0]).map((value, index) => ({ index, value }));
+  const v2 = performance?.v2 || {};
+  const validation = performance?.validation_v2 || {};
+  const data = (v2.equity_curve || [0]).map((value, index) => ({ index, value }));
   const stats = [
-    ["Win rate", `${performance?.win_rate || 0}%`],
-    ["PnL neto", `$${performance?.net_pnl_usd || 0}`],
-    ["Costes", `$${performance?.total_costs_usd || 0}`],
-    ["Drawdown máx.", `${performance?.max_drawdown_r || 0} R`],
+    ["Win rate V2", `${v2.win_rate || 0}%`],
+    ["Expectativa", `${v2.expectancy || 0} R`],
+    ["Profit factor", `${v2.profit_factor || 0}`],
+    ["Drawdown V2", `${v2.max_drawdown_r || 0} R`],
   ];
   return (
     <section className="panel performance-panel">
       <div className="panel-heading">
-        <div><p className="eyebrow">Desempeño observado</p><h2>Curva de equity</h2></div>
+        <div><p className="eyebrow">Desempeño aislado</p><h2>Validación V2</h2></div>
         <span className="muted">
-          {performance?.settled_signals || 0} resueltas · muestra {performance?.sample_status || "insuficiente"}
+          {v2.settled_signals || 0} resueltas · {validation.status === "validated" ? "validada" : "modo sombra"}
         </span>
       </div>
       <div className="metric-grid">
@@ -44,6 +46,16 @@ export default function PerformancePanel({ performance }) {
           </AreaChart>
         </ResponsiveContainer>
       </div>
+      <div className="validation-grid">
+        {Object.entries(validation.gates || {}).map(([gate, passed]) => (
+          <div className={passed ? "passed" : "pending"} key={gate}>
+            <i />{gate.replaceAll("_", " ")}
+          </div>
+        ))}
+      </div>
+      <p className="legacy-note">
+        Historial V1: {performance?.legacy?.settled_signals || 0} operaciones · {performance?.legacy?.expectancy || 0} R de expectativa. No se mezcla con la V2.
+      </p>
     </section>
   );
 }

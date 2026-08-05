@@ -133,3 +133,79 @@ def test_tp1_then_break_even_uses_two_real_exit_legs(tmp_path):
     assert settled["motivo_salida"] == "break_even"
     assert len(settled["salidas"]) == 2
     assert 0 < settled["resultado_r"] < 0.75
+
+
+def test_v2_range_shadow_closes_entire_position_at_mean_target(tmp_path):
+    storage = Storage(str(tmp_path / "v2.db"))
+    item = {
+        "id": "v2-range",
+        "version_estrategia": "v2",
+        "estrategia": "reversion_lateral",
+        "modo": "shadow",
+        "exit_model": "fixed_target",
+        "activo": "BTCUSDT",
+        "timeframe": "1h",
+        "tipo": "long",
+        "confianza": 75,
+        "timestamp": "2026-01-01T00:00:00+00:00",
+        "abierta_en": "2026-01-01T00:00:00+00:00",
+        "estado": "sombra",
+        "resultado_r": None,
+        "entrada_sugerida": 100,
+        "tamano_posicion_sugerido": 20,
+        "capital_en_riesgo": 100,
+        "stop_loss": 95,
+        "take_profit_1": 105,
+        "take_profit_2": 105,
+        "ratio_riesgo_beneficio": 1,
+        "initial_atr": 2,
+        "max_holding_bars": 12,
+        "no_followthrough_bars": 6,
+    }
+    storage.save_signal(item)
+    frame = pd.DataFrame([{
+        "open_time": pd.Timestamp("2026-01-01T00:00:00Z"),
+        "close_time": pd.Timestamp("2026-01-01T01:00:00Z"),
+        "open": 100,
+        "low": 99,
+        "high": 106,
+        "close": 105,
+    }])
+    settle_open_signals(storage, "BTCUSDT", frame, EXECUTION, RISK)
+    settled = storage.list_signals()[0]
+    assert settled["estado"] == "ganadora"
+    assert settled["motivo_salida"] == "mean_target"
+    assert len(settled["salidas"]) == 1
+
+
+def test_legacy_time_stop_uses_signal_timeframe_not_settlement_candle_count(tmp_path):
+    storage = Storage(str(tmp_path / "duration.db"))
+    item = {
+        "id": "legacy-4h",
+        "activo": "BTCUSDT",
+        "timeframe": "4h",
+        "tipo": "long",
+        "confianza": 70,
+        "timestamp": "2026-01-01T00:00:00+00:00",
+        "estado": "abierta",
+        "resultado_r": None,
+        "entrada_sugerida": 100,
+        "tamano_posicion_sugerido": 20,
+        "capital_en_riesgo": 100,
+        "stop_loss": 90,
+        "take_profit_1": 120,
+        "take_profit_2": 130,
+        "ratio_riesgo_beneficio": 2,
+    }
+    storage.save_signal(item)
+    times = pd.date_range("2026-01-01", periods=24, freq="15min", tz="UTC")
+    frame = pd.DataFrame({
+        "open_time": times,
+        "close_time": times + pd.to_timedelta(15, unit="m"),
+        "open": 100,
+        "low": 99,
+        "high": 101,
+        "close": 100,
+    })
+    settle_open_signals(storage, "BTCUSDT", frame, EXECUTION, RISK)
+    assert storage.list_signals()[0]["estado"] == "abierta"

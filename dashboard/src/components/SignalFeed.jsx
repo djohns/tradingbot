@@ -1,6 +1,6 @@
 import { money, dateTime } from "../lib/format";
 
-const ACTIVE_STATES = new Set(["pendiente", "abierta", "parcial"]);
+const ACTIVE_STATES = new Set(["pendiente", "abierta", "parcial", "sombra"]);
 
 function SignalCard({ signal, historical = false }) {
   return (
@@ -11,9 +11,14 @@ function SignalCard({ signal, historical = false }) {
       </div>
       <div className="signal-title">
         <h3>{signal.activo.replace("USDT", "")}<small>/USDT · {signal.timeframe}</small></h3>
-        <div className="confidence" title="Puntuación de confluencia; no es una probabilidad calibrada">
-          <strong>{signal.puntuacion_confluencia ?? signal.confianza}</strong><span> confluencia</span>
+        <div className="confidence" title="Calidad de reglas superadas; no es una probabilidad de éxito">
+          <strong>{signal.confianza}</strong><span> calidad</span>
         </div>
+      </div>
+      <div className="strategy-line">
+        <span>{signal.version_estrategia?.toUpperCase() || "V1"}</span>
+        <span>{signal.estrategia?.replaceAll("_", " ") || "confluencia histórica"}</span>
+        {signal.modo && <span>{signal.modo}</span>}
       </div>
       <div className="levels">
         <div><small>Entrada</small><strong>{money(signal.entrada_sugerida)}</strong></div>
@@ -21,6 +26,9 @@ function SignalCard({ signal, historical = false }) {
         <div><small>Objetivo</small><strong>{money(signal.take_profit_1)}</strong></div>
       </div>
       <p className="reason">{signal.razones?.[0]}</p>
+      {signal.regimen?.name && (
+        <p className="regime-line">Régimen: {signal.regimen.name.replaceAll("_", " ")} · coste {signal.coste_estimado_bps} bps</p>
+      )}
       <footer>
         <span>
           {signal.resultado_r != null
@@ -80,7 +88,7 @@ export default function SignalFeed({ signals }) {
         <SignalGroup
           id="active-signals-title"
           title="Señales activas"
-          subtitle="Operaciones abiertas, parciales o pendientes"
+          subtitle="Candidatas V2 en sombra y operaciones aún abiertas"
           items={activeSignals}
         />
         <SignalGroup

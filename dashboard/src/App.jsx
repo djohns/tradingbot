@@ -44,17 +44,17 @@ export default function App() {
           <span><strong>NORTHSTAR</strong><small>CRYPTO INTELLIGENCE</small></span>
         </a>
         <div className="topbar-meta">
-          <span className="mode"><i /> ADVISOR MODE</span>
+          <span className="mode"><i /> V2 · {(data.system?.strategy_mode || "shadow").toUpperCase()}</span>
           <span className="utc">UTC · 24/7</span>
         </div>
       </header>
       <main>
         <div className="intro">
           <div>
-            <p className="eyebrow">Lectura de mercado basada en confluencias</p>
-            <h1>Decisiones con contexto.<br /><em>Riesgo bajo control.</em></h1>
+            <p className="eyebrow">Motor V2 · régimen, disparador y coste</p>
+            <h1>Menos señales.<br /><em>Más evidencia.</em></h1>
           </div>
-          <p>Señales técnicas, estructura institucional y régimen macro reunidos en una sola lectura. Sin ejecución automática.</p>
+          <p>Rupturas tendenciales y reversión lateral funcionan como modelos separados. La V2 permanece en simulación hasta superar la validación fuera de muestra.</p>
         </div>
         {loading && <div className="loading"><span /> Sincronizando inteligencia de mercado…</div>}
         {error && <div className="error-banner">No pudimos actualizar los datos: {error}</div>}
@@ -77,4 +77,3 @@ export default function App() {
     </div>
   );
 }
-

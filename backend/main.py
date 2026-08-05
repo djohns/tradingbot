@@ -13,8 +13,10 @@ from typing import Any, Callable
 from backend.alerts.telegram import send_signal
 from backend.analysis.context import compose_context
 from backend.analysis.indicators import add_indicators
+from backend.analysis.regime import classify_regime
 from backend.analysis.smc import analyze_smc
 from backend.backtesting.backtest import run_backtest
+from backend.backtesting.metrics import calculate_metrics
 from backend.collectors.coingecko import CoinGeckoCollector
 from backend.collectors.binance_futures import BinanceFuturesCollector
 from backend.collectors.feargreed import FearGreedCollector
@@ -29,7 +31,7 @@ from backend.execution import (
     estimated_funding_events,
     prepare_live_execution,
 )
-from backend.signals.engine import evaluate
+from backend.signals.engine_v2 import evaluate, relative_strength_ranks
 from backend.storage import Storage
 
 LOGGER = logging.getLogger("crypto_bot")
@@ -99,6 +101,17 @@ def read_previous_backtests(output_dir: Path) -> dict[str, Any]:
         return {}
 
 
+def read_previous_market(output_dir: Path) -> dict[str, Any]:
+    path = output_dir / "market.json"
+    if not path.exists():
+        return {}
+    try:
+        payload = json.loads(path.read_text(encoding="utf-8"))
+        return payload if isinstance(payload, dict) else {}
+    except (OSError, ValueError, TypeError):
+        return {}
+
+
 def _timeframe_hours(timeframe: str) -> float:
     unit = timeframe[-1]
     value = float(timeframe[:-1])
@@ -142,6 +155,45 @@ def _group_performance(
         }
         for key, items in grouped.items()
     }
+
+
+def _signal_performance_summary(signals: list[dict[str, Any]]) -> dict[str, Any]:
+    chronological = list(reversed(signals))
+    results = [float(item["resultado_r"]) for item in chronological]
+    trades = [{"result_r": value} for value in results]
+    metrics = calculate_metrics(trades)
+    metrics.update({
+        "settled_signals": len(signals),
+        "net_pnl_usd": round(sum(float(item.get("pnl_neto_usd", 0)) for item in signals), 2),
+        "total_costs_usd": round(sum(float(item.get("costes_totales_usd", 0)) for item in signals), 2),
+        "by_asset": _group_performance(signals, "activo"),
+        "by_strategy": _group_performance(signals, "estrategia"),
+        "by_side": _group_performance(signals, "tipo"),
+    })
+    return metrics
+
+
+def _backtests_are_validated(
+    backtests: dict[str, Any], criteria: dict[str, Any]
+) -> bool:
+    trades = [
+        trade
+        for result in backtests.values()
+        if isinstance(result, dict)
+        for trade in result.get("trades", [])
+    ]
+    metrics = calculate_metrics(trades)
+    tested = [
+        result for result in backtests.values()
+        if isinstance(result, dict) and result.get("total_trades", 0) > 0
+    ]
+    return bool(tested) and all((
+        metrics["total_trades"] >= int(criteria["minimum_oos_trades"]),
+        metrics["expectancy"] > float(criteria["minimum_expectancy_r"]),
+        metrics["profit_factor"] >= float(criteria["minimum_profit_factor"]),
+        metrics["max_drawdown_r"] <= float(criteria["maximum_drawdown_r"]),
+        all(item.get("cost_stress", {}).get("2x", {}).get("expectancy", -1) > 0 for item in tested),
+    ))
 
 
 def _wilson_interval(wins: int, total: int) -> list[float]:
@@ -241,6 +293,80 @@ def _close_signal(
     storage.settle(signal["id"], status, net_r, details)
 
 
+def _settle_v2_signal(
+    storage: Storage,
+    signal: dict[str, Any],
+    candles: Any,
+    execution_config: dict[str, Any],
+    funding_collector: BinanceFuturesCollector | None,
+) -> None:
+    """Settle V2 models without applying the legacy fixed TP1/TP2 logic."""
+    side = signal["tipo"]
+    entry = float(signal["entrada_sugerida"])
+    initial_stop = float(signal["stop_loss"])
+    target = float(signal["take_profit_1"])
+    initial_atr = float(signal.get("initial_atr") or abs(entry - initial_stop) / 2.5)
+    trailing_multiple = float(signal.get("trailing_atr_multiplier", 3.0))
+    risk_distance = abs(entry - initial_stop)
+    opened_at = as_utc(signal.get("abierta_en", signal["timestamp"]))
+    bar_hours = _timeframe_hours(str(signal.get("timeframe", "1h")))
+    no_followthrough_hours = bar_hours * int(signal.get("no_followthrough_bars", 6))
+    max_holding_hours = bar_hours * int(signal.get("max_holding_bars", 60))
+    running_high, running_low = entry, entry
+    trailing_stop = initial_stop
+
+    for candle in candles.itertuples():
+        closed_at = as_utc(candle.close_time)
+        elapsed_hours = (closed_at - opened_at).total_seconds() / 3600
+        stop_hit = candle.low <= trailing_stop if side == "long" else candle.high >= trailing_stop
+        target_hit = candle.high >= target if side == "long" else candle.low <= target
+        if stop_hit:
+            reason = "trailing_stop" if trailing_stop != initial_stop else "stop_loss"
+            _close_signal(
+                storage, signal, candle,
+                [{"fraction": 1.0, "price": trailing_stop, "reason": reason}],
+                reason, execution_config, funding_collector,
+                candles[candles["open_time"] <= candle.open_time],
+            )
+            return
+        if signal.get("exit_model") == "fixed_target" and target_hit:
+            _close_signal(
+                storage, signal, candle,
+                [{"fraction": 1.0, "price": target, "reason": "mean_target"}],
+                "mean_target", execution_config, funding_collector,
+                candles[candles["open_time"] <= candle.open_time],
+            )
+            return
+
+        running_high = max(running_high, float(candle.high))
+        running_low = min(running_low, float(candle.low))
+        if signal.get("exit_model") == "chandelier":
+            candidate = (
+                running_high - initial_atr * trailing_multiple
+                if side == "long"
+                else running_low + initial_atr * trailing_multiple
+            )
+            trailing_stop = max(trailing_stop, candidate) if side == "long" else min(trailing_stop, candidate)
+
+        mfe_distance = max(0.0, running_high - entry) if side == "long" else max(0.0, entry - running_low)
+        if elapsed_hours >= no_followthrough_hours and mfe_distance < risk_distance * 0.5:
+            _close_signal(
+                storage, signal, candle,
+                [{"fraction": 1.0, "price": float(candle.close), "reason": "no_followthrough"}],
+                "no_followthrough", execution_config, funding_collector,
+                candles[candles["open_time"] <= candle.open_time],
+            )
+            return
+        if elapsed_hours >= max_holding_hours:
+            _close_signal(
+                storage, signal, candle,
+                [{"fraction": 1.0, "price": float(candle.close), "reason": "max_holding"}],
+                "max_holding", execution_config, funding_collector,
+                candles[candles["open_time"] <= candle.open_time],
+            )
+            return
+
+
 def settle_open_signals(
     storage: Storage,
     symbol: str,
@@ -262,6 +388,11 @@ def settle_open_signals(
         # price action the trader could not have observed or executed.
         candles = price_frame[price_frame["open_time"] >= opened_at].copy()
         if candles.empty:
+            continue
+        if signal.get("version_estrategia") == "v2":
+            _settle_v2_signal(
+                storage, signal, candles, execution_config, funding_collector
+            )
             continue
         tp1_reached = bool(signal.get("tp1_alcanzado_en"))
         if tp1_reached:
@@ -339,8 +470,13 @@ def settle_open_signals(
                     },
                 )
         else:
-            if len(candles) >= max_bars:
-                candle = candles.iloc[max_bars - 1]
+            max_holding_hours = _timeframe_hours(str(signal.get("timeframe", "1h"))) * max_bars
+            elapsed_hours = (
+                candles["close_time"] - opened_at
+            ).dt.total_seconds() / 3600
+            eligible = candles[elapsed_hours >= max_holding_hours]
+            if not eligible.empty:
+                candle = eligible.iloc[0]
                 legs = []
                 if tp1_reached:
                     legs.append(
@@ -355,7 +491,8 @@ def settle_open_signals(
                 )
                 _close_signal(
                     storage, signal, candle, legs, "time_stop", execution_config,
-                    funding_collector, candles.iloc[:max_bars],
+                    funding_collector,
+                    candles[candles["open_time"] <= candle["open_time"]],
                 )
 
 
@@ -458,6 +595,7 @@ def run(config_path: str | None = None, *, backtest: bool = False) -> dict[str, 
     context["updated_at"] = datetime.now(timezone.utc).isoformat()
 
     output_dir = Path(config["storage"]["output_dir"])
+    previous_market = read_previous_market(output_dir)
     storage = Storage(config["storage"]["sqlite_path"])
     restored_signals = storage.hydrate(read_previous_signals(output_dir))
     if restored_signals:
@@ -469,7 +607,16 @@ def run(config_path: str | None = None, *, backtest: bool = False) -> dict[str, 
     }
     diagnostics: list[dict[str, Any]] = []
     backtests: dict[str, Any] = {} if backtest else read_previous_backtests(output_dir)
+    requested_mode = str(config["strategy_v2"].get("mode", "shadow"))
+    if requested_mode == "live" and not _backtests_are_validated(
+        backtests, config["validation"]
+    ):
+        LOGGER.warning("V2 live mode requested but validation gates are not met; forcing shadow")
+        config["strategy_v2"]["mode"] = "shadow"
     new_signals: list[dict[str, Any]] = []
+    frames_by_symbol: dict[str, dict[str, Any]] = {}
+    execution_by_symbol: dict[str, dict[str, Any]] = {}
+    derivatives_by_symbol: dict[str, dict[str, Any]] = {}
     for symbol in config["assets"]:
         frames: dict[str, Any] = {}
         for timeframe in config["timeframes"]:
@@ -499,6 +646,32 @@ def run(config_path: str | None = None, *, backtest: bool = False) -> dict[str, 
             lambda s=symbol: futures_collector.book_ticker(s),
         )
         statuses.append(futures_status)
+        derivatives, derivatives_status = safe_collect(
+            f"Binance Futures derivatives {symbol}",
+            lambda s=symbol: futures_collector.derivatives_snapshot(s),
+        )
+        statuses.append(derivatives_status)
+        if derivatives is None:
+            derivatives = {
+                "funding_rate": float(config["execution"]["fallback_funding_rate"]),
+                "funding_interval_hours": int(
+                    config["execution"]["fallback_funding_interval_hours"]
+                ),
+                "open_interest": None,
+                "source": "configured_estimate",
+            }
+        previous_derivatives = (
+            previous_market.get("assets", {}).get(symbol, {}).get("derivatives", {})
+        )
+        previous_open_interest = previous_derivatives.get("open_interest")
+        current_open_interest = derivatives.get("open_interest")
+        if previous_open_interest and current_open_interest:
+            derivatives["open_interest_change_pct"] = round(
+                (float(current_open_interest) / float(previous_open_interest) - 1) * 100,
+                4,
+            )
+        else:
+            derivatives["open_interest_change_pct"] = None
         if not frames:
             continue
         execution_market_price = float(
@@ -513,6 +686,7 @@ def run(config_path: str | None = None, *, backtest: bool = False) -> dict[str, 
             "ticker": ticker,
             "order_book": order_book,
             "data_provider": market_collector.last_provider,
+            "derivatives": derivatives,
             "timeframe": chart_tf,
             "candles": [
                 {
@@ -548,11 +722,33 @@ def run(config_path: str | None = None, *, backtest: bool = False) -> dict[str, 
             config["risk"],
             futures_collector,
         )
+        frames_by_symbol[symbol] = frames
+        execution_by_symbol[symbol] = {
+            "market_price": execution_market_price,
+            "order_book": futures_book or order_book,
+        }
+        derivatives_by_symbol[symbol] = derivatives
+
+    rank_config = config["strategy_v2"].get("relative_strength", {})
+    ranks = relative_strength_ranks(
+        frames_by_symbol,
+        timeframe=str(rank_config.get("timeframe", "1d")),
+        lookback=int(rank_config.get("lookback_bars", 14)),
+    ) if rank_config.get("enabled", True) else {}
+    btc_regime = None
+    if "BTCUSDT" in frames_by_symbol and "4h" in frames_by_symbol["BTCUSDT"]:
+        btc_regime = classify_regime(
+            frames_by_symbol["BTCUSDT"],
+            "4h",
+            config["strategy_v2"].get("regime", {}),
+        ).name
+
+    for symbol, frames in frames_by_symbol.items():
         max_open = int(config["risk"]["max_open_signals_per_asset"])
         active = [
             item
             for item in storage.list_signals()
-            if item.get("estado") in {"pendiente", "abierta", "parcial"}
+            if item.get("estado") in {"pendiente", "abierta", "parcial", "sombra"}
         ]
         portfolio_risk = sum(float(item.get("capital_en_riesgo", 0)) for item in active)
         portfolio_cap = (
@@ -560,7 +756,12 @@ def run(config_path: str | None = None, *, backtest: bool = False) -> dict[str, 
             * float(config["risk"]["max_portfolio_risk_pct"])
             / 100
         )
-        if len(storage.open_for_asset(symbol)) < max_open and portfolio_risk < portfolio_cap:
+        correlated_cap = int(config["risk"].get("max_correlated_positions", 2))
+        if (
+            len(storage.open_for_asset(symbol)) < max_open
+            and len(active) < correlated_cap
+            and portfolio_risk < portfolio_cap
+        ):
             for timeframe in config["signal_timeframes"]:
                 if timeframe not in frames:
                     continue
@@ -580,16 +781,23 @@ def run(config_path: str | None = None, *, backtest: bool = False) -> dict[str, 
                     frames,
                     context,
                     config["risk"],
-                    market_price=execution_market_price,
+                    market_price=execution_by_symbol[symbol]["market_price"],
+                    strategy_config=config["strategy_v2"],
+                    execution_config=config["execution"],
+                    derivatives=derivatives_by_symbol[symbol],
+                    relative_strength=ranks.get(symbol),
+                    btc_regime=btc_regime,
                 )
                 diagnostics.append(detail)
                 if signal:
                     signal = prepare_live_execution(
                         signal,
-                        market_price=execution_market_price,
-                        order_book=futures_book or order_book,
+                        market_price=execution_by_symbol[symbol]["market_price"],
+                        order_book=execution_by_symbol[symbol]["order_book"],
                         config=config["execution"],
                     )
+                    if signal.get("modo") == "shadow":
+                        signal["estado"] = "sombra"
                     if storage.save_signal(signal):
                         new_signals.append(signal)
                         # Re-evaluate the per-asset/global cap before considering
@@ -602,6 +810,10 @@ def run(config_path: str | None = None, *, backtest: bool = False) -> dict[str, 
                 symbol=symbol,
                 risk_config=config["risk"],
                 execution_config=config["execution"],
+                strategy_config=config["strategy_v2"],
+                validation_config=config["validation"],
+                relative_strength=ranks.get(symbol),
+                btc_regime=btc_regime,
             )
 
     signals = storage.list_signals()
@@ -652,6 +864,49 @@ def run(config_path: str | None = None, *, backtest: bool = False) -> dict[str, 
         "backtests": backtests,
         "updated_at": context["updated_at"],
     }
+    v2_settled = [
+        item for item in settled if item.get("version_estrategia") == "v2"
+    ]
+    legacy_settled = [
+        item for item in settled if item.get("version_estrategia") != "v2"
+    ]
+    performance["v2"] = _signal_performance_summary(v2_settled)
+    performance["legacy"] = _signal_performance_summary(legacy_settled)
+    oos_trades = [
+        trade
+        for result in backtests.values()
+        if isinstance(result, dict)
+        for trade in result.get("trades", [])
+    ]
+    oos_metrics = calculate_metrics(oos_trades)
+    validation_criteria = config["validation"]
+    validation_gates = {
+        "minimum_trades": oos_metrics["total_trades"]
+        >= int(validation_criteria["minimum_oos_trades"]),
+        "positive_expectancy": oos_metrics["expectancy"]
+        > float(validation_criteria["minimum_expectancy_r"]),
+        "profit_factor": oos_metrics["profit_factor"]
+        >= float(validation_criteria["minimum_profit_factor"]),
+        "drawdown": oos_metrics["max_drawdown_r"]
+        <= float(validation_criteria["maximum_drawdown_r"]),
+        "all_assets_survive_2x_costs": any(
+            result.get("total_trades", 0) > 0
+            for result in backtests.values()
+            if isinstance(result, dict)
+        )
+        and all(
+            result.get("cost_stress", {}).get("2x", {}).get("expectancy", -1) > 0
+            for result in backtests.values()
+            if isinstance(result, dict) and result.get("total_trades", 0) > 0
+        ),
+    }
+    performance["validation_v2"] = {
+        "status": "validated" if all(validation_gates.values()) else "shadow_required",
+        "gates": validation_gates,
+        "criteria": validation_criteria,
+        "oos": oos_metrics,
+        "mode": config["strategy_v2"].get("mode", "shadow"),
+    }
     market_statuses = [
         item for item in statuses if str(item.get("name", "")).startswith("Market ")
     ]
@@ -666,6 +921,12 @@ def run(config_path: str | None = None, *, backtest: bool = False) -> dict[str, 
         "market_providers": market_collector.provider_order,
         "sources": statuses,
         "new_signals": len(new_signals),
+        "strategy_version": "v2",
+        "strategy_mode": config["strategy_v2"].get("mode", "shadow"),
+        "strategy_mode_requested": requested_mode,
+        "validation_status": performance["validation_v2"]["status"],
+        "btc_regime": btc_regime,
+        "relative_strength": ranks,
         "diagnostics": diagnostics,
     }
     require_market_data(market)
@@ -685,6 +946,8 @@ def run(config_path: str | None = None, *, backtest: bool = False) -> dict[str, 
     token, chat_id = secret("TELEGRAM_BOT_TOKEN"), secret("TELEGRAM_CHAT_ID")
     if config["alerts"]["telegram_enabled"] and token and chat_id:
         for signal in new_signals:
+            if signal.get("modo") != "live":
+                continue
             try:
                 send_signal(token, chat_id, signal, network["timeout_seconds"])
             except Exception as exc:

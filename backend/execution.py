@@ -32,6 +32,44 @@ def execution_price(
     return reference_price * (1 + impact if is_buy else 1 - impact)
 
 
+def estimate_round_trip_cost(
+    *,
+    entry: float,
+    target: float,
+    side: str,
+    config: dict[str, Any],
+    funding_rate: float,
+    holding_hours: float,
+    funding_interval_hours: int,
+) -> dict[str, float]:
+    """Estimate the full economic hurdle before a candidate may be published.
+
+    Funding retains its sign: positive funding is a cost to longs and a credit
+    to shorts. Credits may reduce the hurdle but never make trading free.
+    """
+    entry_fee = effective_fee_rate(config, str(config.get("entry_order_type", "taker")))
+    exit_fee = effective_fee_rate(config, str(config.get("exit_order_type", "taker")))
+    fee_bps = (entry_fee + exit_fee) * 10_000
+    spread_bps = float(config.get("spread_bps", 0))
+    slippage_bps = float(config.get("slippage_bps", 0)) * 2
+    events = max(0.0, holding_hours / max(1, funding_interval_hours))
+    signed_funding = funding_rate * events * (1 if side == "long" else -1)
+    funding_bps = signed_funding * 10_000
+    # Operational friction is always positive; a funding credit can offset at
+    # most half of it to avoid approving trades solely because of carry.
+    friction = fee_bps + spread_bps + slippage_bps
+    total = friction + max(funding_bps, -friction * 0.5)
+    expected_move = abs(target / entry - 1) * 10_000 if entry else 0.0
+    return {
+        "fee_bps": round(fee_bps, 4),
+        "spread_bps": round(spread_bps, 4),
+        "slippage_bps": round(slippage_bps, 4),
+        "funding_bps": round(funding_bps, 4),
+        "total_cost_bps": round(max(0.0, total), 4),
+        "expected_move_bps": round(expected_move, 4),
+    }
+
+
 def prepare_live_execution(
     signal: dict[str, Any],
     *,

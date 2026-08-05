@@ -14,6 +14,9 @@ export default function SystemStatus({ system }) {
         <span className={`pulse ${system?.overall_status || "degraded"}`} />
         <strong>{system?.overall_status === "operational" ? "Sistema operativo" : "Sistema degradado"}</strong>
         <small>Actualizado {dateTime(system?.updated_at)}</small>
+        <span className={`validation-pill ${system?.validation_status || "shadow_required"}`}>
+          {system?.validation_status === "validated" ? "V2 validada" : "V2 en validación"}
+        </span>
       </div>
       <div className="source-row">
         {[...summary.values()].slice(0, 8).map((source) => (
@@ -25,4 +28,3 @@ export default function SystemStatus({ system }) {
     </section>
   );
 }
-

@@ -1,8 +1,9 @@
 # Northstar — Bot de análisis y señales cripto
 
-Northstar monitorea BTC y altcoins, combina análisis técnico, Smart Money
-Concepts, contexto macro/on-chain y sentimiento, y publica señales estructuradas
-con control de riesgo. Opera en modo **asesor**: nunca abre ni cierra órdenes.
+Northstar V2 monitorea BTC y altcoins mediante dos modelos cuantitativos
+independientes: ruptura tendencial y reversión lateral. Antes de registrar una
+candidata exige régimen, disparador, coste y riesgo válidos. Opera en modo
+**sombra** hasta superar las puertas de validación; nunca abre ni cierra órdenes.
 
 > **Aviso:** las señales son generadas algorítmicamente con fines informativos.
 > No constituyen asesoría financiera. Los criptoactivos son volátiles y pueden
@@ -18,17 +19,27 @@ con control de riesgo. Opera en modo **asesor**: nunca abre ni cierra órdenes.
   M2, curva 10Y-2Y e IPC.
 - Contexto on-chain gratuito con mempool.space y Blockchain.com.
 - Sentimiento social opcional con LunarCrush.
-- EMA 20/50/200, RSI y divergencias, MACD, Bollinger, ATR y volumen relativo.
-- BOS/CHoCH, order blocks, fair value gaps, barridos y zonas de liquidez.
-- Triángulos y canales mediante regresión.
-- Señales long/short con puntuación de confluencia, razones, entrada, SL, TP1/TP2, R:R, tamaño
-  máximo sugerido y disclaimer.
+- EMA 20/50/200, Donchian 10/20/55, ADX, Efficiency Ratio, Bollinger, ATR,
+  volatilidad realizada y volumen relativo.
+- Clasificador con veto duro para regímenes tendencial, lateral y transición.
+- Ruptura Donchian confirmada en 4h, alineación diaria, volumen y filtro especial
+  para cortos en altcoins según el régimen de BTC.
+- Reversión a la media en 1h únicamente en régimen lateral y con rechazo real
+  en el extremo de Bollinger.
+- Ranking de fuerza relativa de 14 días como selector de activos.
+- Filtro económico que exige que el movimiento esperado supere al menos tres
+  veces comisiones, spread, slippage y funding estimado.
+- Snapshot Binance Futures de mark/index price, funding, intervalo dinámico y
+  open interest; una caída superior al 3% entre ejecuciones veta la ruptura.
+- Riesgo adaptado a volatilidad entre 0,25% y 0,50%, límite de notional y tope
+  agregado para exposiciones correlacionadas.
 - SQLite para deduplicación, histórico y liquidación auditable de señales.
 - Ejecución simulada Binance USDⓈ-M con comisiones maker/taker, spread,
   slippage y funding histórico público (o fallback explícitamente estimado).
-- Salida parcial en TP1, stop a break-even, TP2 real y cierre temporal.
-- Backtesting con win rate, expectancy, profit factor, drawdown y métricas por
-  régimen.
+- Chandelier/ATR y veto de falta de continuación para tendencias; objetivo en
+  la media para rangos. La lógica V1 se conserva solo para liquidar su historial.
+- Replay cronológico, folds walk-forward con parámetros fijos y estrés de costes
+  1x/2x/3x. La V2 no se declara validada con menos de 150 operaciones OOS.
 - Alertas opcionales por Telegram.
 - Dashboard React desplegable en GitHub Pages.
 - GitHub Actions para análisis horario, actualización de datos, pruebas y deploy.
@@ -37,16 +48,16 @@ con control de riesgo. Opera en modo **asesor**: nunca abre ni cierra órdenes.
 ## Arquitectura
 
 ```text
-APIs públicas ──> collectors ──> indicadores + SMC + contexto
-                                      │
-                                      v
-                              scoring + riesgo
-                                │           │
-                                v           v
-                         SQLite / JSON   Telegram
-                                │
-                                v
-                        dashboard estático
+APIs públicas ──> indicadores ──> régimen ──> selector de estrategia
+                                                   │
+                                                   v
+                                        disparador obligatorio
+                                                   │
+                                                   v
+                                         costes ──> riesgo
+                                                   │
+                                                   v
+                                  SQLite / JSON / dashboard
 ```
 
 La ejecución programada escribe los mismos cinco contratos que consume el
@@ -116,16 +127,21 @@ Edita `backend/config.yaml` para cambiar:
 - `signal_timeframes`: cierres que pueden producir señales.
 - `risk.capital_usd`: capital hipotético usado para dimensionar.
 - `risk.risk_per_trade_pct`: pérdida máxima sugerida por operación.
-- `risk.minimum_rr`: ratio riesgo/beneficio mínimo.
-- `risk.minimum_confidence`: umbral de publicación.
+- `risk.minimum_risk_per_trade_pct`: suelo del riesgo tras escalar volatilidad.
+- `risk.volatility_target_annual_pct`: objetivo usado para reducir tamaño.
+- `risk.max_notional_pct`: límite de exposición por señal.
 - `risk.max_open_signals_per_asset`: evita acumular señales duplicadas.
 - `risk.max_portfolio_risk_pct`: limita el riesgo agregado de señales correlacionadas.
 - `risk.cooldown_bars_after_loss`: pausa nuevas entradas tras un stop.
 - `execution.maker_fee_rate` / `taker_fee_rate`: comisión de tu nivel de Binance.
 - `execution.spread_bps` / `slippage_bps`: hipótesis conservadoras de ejecución.
 - `execution.bnb_fee_discount_pct`: descuento aplicable si pagas comisiones con BNB.
-- `execution.max_bars_open`: vencimiento temporal de la operación.
-- `execution.tp1_close_fraction`: fracción liquidada en TP1; el resto busca TP2.
+- `strategy_v2.mode`: `shadow` o `live`; solo `live` permite alertas Telegram.
+- `strategy_v2.regime`: umbrales ADX y Efficiency Ratio.
+- `strategy_v2.trend`: canal, volumen, stops y salida Chandelier.
+- `strategy_v2.range`: z-score, rechazo, stop y duración máxima.
+- `strategy_v2.cost_gate_multiple`: margen mínimo frente a costes.
+- `validation`: cantidad OOS, profit factor, expectancy, drawdown y estrés.
 
 El tamaño sugerido se calcula como:
 
@@ -133,9 +149,9 @@ El tamaño sugerido se calcula como:
 (capital × riesgo %) / distancia entre entrada y stop
 ```
 
-El stop usa estructura reciente y ATR. Cambiar los parámetros no garantiza
-rentabilidad; ejecuta backtests y pruebas fuera de muestra antes de usar una
-configuración.
+El riesgo efectivo se reduce cuando la volatilidad observada supera el objetivo.
+Cambiar los parámetros no autoriza el modo live: primero deben superarse las
+puertas OOS y el periodo de observación en sombra.
 
 ### Costes de Binance Futures
 
@@ -167,6 +183,10 @@ por Git y nunca debe subirse.
 | `BOT_CONFIG` | No | Ruta alternativa al YAML |
 | `BOT_LOG_LEVEL` | No | Nivel de logs; por defecto `INFO` |
 | `MARKET_DATA_PROVIDER` | No | `auto`, `binance` o `kraken` |
+| `BINANCE_MAKER_FEE_RATE` | No | Comisión maker efectiva de la cuenta |
+| `BINANCE_TAKER_FEE_RATE` | No | Comisión taker efectiva de la cuenta |
+| `BINANCE_BNB_FEE_DISCOUNT_PCT` | No | Descuento real por BNB |
+| `BOT_STRATEGY_MODE` | No | `shadow` o `live`; por defecto `shadow` |
 
 ### Telegram
 
@@ -175,9 +195,9 @@ por Git y nunca debe subirse.
 3. Consulta `https://api.telegram.org/bot<TOKEN>/getUpdates` y toma el `chat.id`.
 4. Configura `TELEGRAM_BOT_TOKEN` y `TELEGRAM_CHAT_ID`.
 
-Telegram solo recibe señales nuevas que superen el umbral; las ejecuciones
-repetidas no duplican mensajes porque el ID de cada señal se deriva de
-activo/timeframe/lado/cierre de vela.
+Telegram solo recibe señales cuando `strategy_v2.mode` es `live`. Las candidatas
+`shadow` se guardan y liquidan para validación, pero nunca se notifican como una
+operación ejecutable. Los IDs deterministas evitan duplicados.
 
 ## Subir a GitHub
 
@@ -255,12 +275,26 @@ siguiente cálculo diario lo reemplaza.
 
 ## Backtesting y lectura de métricas
 
-`python -m backend.main --backtest` recorre temporalmente la misma puntuación
-técnica que usa el motor en vivo, entra en la apertura siguiente, aplica la
-gestión TP1/TP2 y calcula el resultado neto con costes. El contexto histórico
-macro/on-chain se mantiene neutral para evitar usar el contexto actual como
-información futura. Una vela que toca stop y objetivo se trata como pérdida.
-Reporta:
+`python -m backend.main --backtest` recorre cronológicamente el mismo motor V2,
+entra en la apertura siguiente y aplica su salida específica. Los canales están
+desplazados una vela para impedir look-ahead. El contexto histórico macro/on-chain
+se mantiene neutral y el ranking transversal se desactiva cuando no existe un
+universo histórico sincronizado.
+
+El informe separa ruptura y reversión, largos/cortos y regímenes. También crea
+folds temporales y repite el replay con costes 1x, 2x y 3x. Las puertas mínimas
+incluidas son:
+
+- 150 operaciones fuera de muestra;
+- expectancy neta positiva;
+- profit factor mínimo 1,20;
+- drawdown máximo de 12R;
+- supervivencia con costes duplicados.
+
+Mientras alguna puerta falle, `validation_v2.status` será `shadow_required` y
+el dashboard mostrará **V2 en validación**. Aunque se solicite `live`, el backend
+fuerza `shadow` mientras el último backtest publicado no cumpla todas las puertas.
+Además reporta:
 
 - win rate;
 - R promedio y expectancy;
@@ -290,8 +324,8 @@ datos más extensos y validación walk-forward fuera de muestra.
 ├── .github/workflows/        # análisis/deploy y CI
 ├── backend/
 │   ├── collectors/           # Binance, CoinGecko, FRED, F&G, on-chain, social
-│   ├── analysis/             # indicadores, SMC, patrones, contexto
-│   ├── signals/              # scoring y riesgo
+│   ├── analysis/             # indicadores, régimen, SMC y contexto
+│   ├── signals/              # motor V2 y riesgo; V1 solo histórica
 │   ├── backtesting/          # simulador y métricas
 │   ├── alerts/               # Telegram
 │   ├── data/                 # JSON versionados; SQLite local ignorado
