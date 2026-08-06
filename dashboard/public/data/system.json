@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-06T06:46:02.517542+00:00",
+  "updated_at": "2026-08-06T09:58:38.623164+00:00",
   "overall_status": "operational",
   "market_data_available": true,
   "market_providers": [
@@ -10,217 +10,217 @@
     {
       "name": "Fear & Greed",
       "status": "ok",
-      "updated_at": "2026-08-06T06:45:59.795189+00:00",
-      "latency_ms": 271
+      "updated_at": "2026-08-06T09:58:36.628561+00:00",
+      "latency_ms": 281
     },
     {
       "name": "CoinGecko",
       "status": "ok",
-      "updated_at": "2026-08-06T06:45:59.955951+00:00",
-      "latency_ms": 160
+      "updated_at": "2026-08-06T09:58:36.815192+00:00",
+      "latency_ms": 185
     },
     {
       "name": "On-chain",
       "status": "ok",
-      "updated_at": "2026-08-06T06:46:00.964448+00:00",
-      "latency_ms": 1007
+      "updated_at": "2026-08-06T09:58:37.762256+00:00",
+      "latency_ms": 946
     },
     {
       "name": "FRED",
       "status": "ok",
-      "updated_at": "2026-08-06T06:46:02.516457+00:00",
-      "latency_ms": 1550
+      "updated_at": "2026-08-06T09:58:38.622011+00:00",
+      "latency_ms": 858
     },
     {
       "name": "Market BTCUSDT 15m",
       "status": "ok",
-      "updated_at": "2026-08-06T06:46:02.833233+00:00",
-      "latency_ms": 295
+      "updated_at": "2026-08-06T09:58:38.949321+00:00",
+      "latency_ms": 285
     },
     {
       "name": "Market BTCUSDT 1h",
       "status": "ok",
-      "updated_at": "2026-08-06T06:46:03.024651+00:00",
-      "latency_ms": 178
+      "updated_at": "2026-08-06T09:58:39.141860+00:00",
+      "latency_ms": 184
     },
     {
       "name": "Market BTCUSDT 4h",
       "status": "ok",
-      "updated_at": "2026-08-06T06:46:03.213565+00:00",
-      "latency_ms": 178
+      "updated_at": "2026-08-06T09:58:39.336381+00:00",
+      "latency_ms": 187
     },
     {
       "name": "Market BTCUSDT 1d",
       "status": "ok",
-      "updated_at": "2026-08-06T06:46:03.434855+00:00",
-      "latency_ms": 210
+      "updated_at": "2026-08-06T09:58:39.871064+00:00",
+      "latency_ms": 527
     },
     {
       "name": "Market ticker BTCUSDT",
       "status": "ok",
-      "updated_at": "2026-08-06T06:46:03.617489+00:00",
-      "latency_ms": 173
+      "updated_at": "2026-08-06T09:58:39.910291+00:00",
+      "latency_ms": 32
     },
     {
       "name": "Market orderbook BTCUSDT",
       "status": "ok",
-      "updated_at": "2026-08-06T06:46:03.807441+00:00",
-      "latency_ms": 189
+      "updated_at": "2026-08-06T09:58:40.088342+00:00",
+      "latency_ms": 178
     },
     {
       "name": "Binance Futures execution BTCUSDT",
       "status": "degraded",
-      "updated_at": "2026-08-06T06:46:07.377056+00:00",
+      "updated_at": "2026-08-06T09:58:40.169078+00:00",
       "error": "HTTP 451 from https://fapi.binance.com/fapi/v1/ticker/bookTicker: {\n  \"code\": 0,\n  \"msg\": \"Service unavailable from a restricted location according to 'b. Eligibility' in https://w"
     },
     {
       "name": "Binance Futures derivatives BTCUSDT",
       "status": "degraded",
-      "updated_at": "2026-08-06T06:46:07.381347+00:00",
+      "updated_at": "2026-08-06T09:58:40.171962+00:00",
       "error": "HTTP 451 from https://fapi.binance.com/fapi/v1/premiumIndex: {\n  \"code\": 0,\n  \"msg\": \"Service unavailable from a restricted location according to 'b. Eligibility' in https://www.bi"
     },
     {
       "name": "Market ETHUSDT 15m",
       "status": "ok",
-      "updated_at": "2026-08-06T06:46:07.586976+00:00",
-      "latency_ms": 179
+      "updated_at": "2026-08-06T09:58:40.382835+00:00",
+      "latency_ms": 194
     },
     {
       "name": "Market ETHUSDT 1h",
       "status": "ok",
-      "updated_at": "2026-08-06T06:46:07.790046+00:00",
-      "latency_ms": 192
+      "updated_at": "2026-08-06T09:58:40.564050+00:00",
+      "latency_ms": 174
     },
     {
       "name": "Market ETHUSDT 4h",
       "status": "ok",
-      "updated_at": "2026-08-06T06:46:08.003547+00:00",
-      "latency_ms": 201
+      "updated_at": "2026-08-06T09:58:40.749647+00:00",
+      "latency_ms": 178
     },
     {
       "name": "Market ETHUSDT 1d",
       "status": "ok",
-      "updated_at": "2026-08-06T06:46:08.217197+00:00",
-      "latency_ms": 201
+      "updated_at": "2026-08-06T09:58:40.942109+00:00",
+      "latency_ms": 185
     },
     {
       "name": "Market ticker ETHUSDT",
       "status": "ok",
-      "updated_at": "2026-08-06T06:46:08.398904+00:00",
-      "latency_ms": 170
+      "updated_at": "2026-08-06T09:58:41.112701+00:00",
+      "latency_ms": 163
     },
     {
       "name": "Market orderbook ETHUSDT",
       "status": "ok",
-      "updated_at": "2026-08-06T06:46:08.577270+00:00",
-      "latency_ms": 178
+      "updated_at": "2026-08-06T09:58:41.308222+00:00",
+      "latency_ms": 195
     },
     {
       "name": "Binance Futures execution ETHUSDT",
       "status": "degraded",
-      "updated_at": "2026-08-06T06:46:08.580515+00:00",
+      "updated_at": "2026-08-06T09:58:41.311329+00:00",
       "error": "HTTP 451 from https://fapi.binance.com/fapi/v1/ticker/bookTicker: {\n  \"code\": 0,\n  \"msg\": \"Service unavailable from a restricted location according to 'b. Eligibility' in https://w"
     },
     {
       "name": "Binance Futures derivatives ETHUSDT",
       "status": "degraded",
-      "updated_at": "2026-08-06T06:46:08.583674+00:00",
+      "updated_at": "2026-08-06T09:58:41.314167+00:00",
       "error": "HTTP 451 from https://fapi.binance.com/fapi/v1/premiumIndex: {\n  \"code\": 0,\n  \"msg\": \"Service unavailable from a restricted location according to 'b. Eligibility' in https://www.bi"
     },
     {
       "name": "Market SOLUSDT 15m",
       "status": "ok",
-      "updated_at": "2026-08-06T06:46:09.094246+00:00",
-      "latency_ms": 487
+      "updated_at": "2026-08-06T09:58:41.500521+00:00",
+      "latency_ms": 170
     },
     {
       "name": "Market SOLUSDT 1h",
       "status": "ok",
-      "updated_at": "2026-08-06T06:46:09.289642+00:00",
-      "latency_ms": 183
+      "updated_at": "2026-08-06T09:58:41.713784+00:00",
+      "latency_ms": 206
     },
     {
       "name": "Market SOLUSDT 4h",
       "status": "ok",
-      "updated_at": "2026-08-06T06:46:09.485119+00:00",
-      "latency_ms": 184
+      "updated_at": "2026-08-06T09:58:41.920366+00:00",
+      "latency_ms": 199
     },
     {
       "name": "Market SOLUSDT 1d",
       "status": "ok",
-      "updated_at": "2026-08-06T06:46:09.680713+00:00",
-      "latency_ms": 184
+      "updated_at": "2026-08-06T09:58:42.121377+00:00",
+      "latency_ms": 194
     },
     {
       "name": "Market ticker SOLUSDT",
       "status": "ok",
-      "updated_at": "2026-08-06T06:46:09.870017+00:00",
-      "latency_ms": 177
+      "updated_at": "2026-08-06T09:58:42.304573+00:00",
+      "latency_ms": 176
     },
     {
       "name": "Market orderbook SOLUSDT",
       "status": "ok",
-      "updated_at": "2026-08-06T06:46:10.043545+00:00",
-      "latency_ms": 173
+      "updated_at": "2026-08-06T09:58:42.486850+00:00",
+      "latency_ms": 182
     },
     {
       "name": "Binance Futures execution SOLUSDT",
       "status": "degraded",
-      "updated_at": "2026-08-06T06:46:10.046930+00:00",
+      "updated_at": "2026-08-06T09:58:42.489869+00:00",
       "error": "HTTP 451 from https://fapi.binance.com/fapi/v1/ticker/bookTicker: {\n  \"code\": 0,\n  \"msg\": \"Service unavailable from a restricted location according to 'b. Eligibility' in https://w"
     },
     {
       "name": "Binance Futures derivatives SOLUSDT",
       "status": "degraded",
-      "updated_at": "2026-08-06T06:46:10.050094+00:00",
+      "updated_at": "2026-08-06T09:58:42.492467+00:00",
       "error": "HTTP 451 from https://fapi.binance.com/fapi/v1/premiumIndex: {\n  \"code\": 0,\n  \"msg\": \"Service unavailable from a restricted location according to 'b. Eligibility' in https://www.bi"
     },
     {
       "name": "Market BNBUSDT 15m",
       "status": "ok",
-      "updated_at": "2026-08-06T06:46:10.266523+00:00",
-      "latency_ms": 190
+      "updated_at": "2026-08-06T09:58:42.686671+00:00",
+      "latency_ms": 178
     },
     {
       "name": "Market BNBUSDT 1h",
       "status": "ok",
-      "updated_at": "2026-08-06T06:46:10.487444+00:00",
-      "latency_ms": 210
+      "updated_at": "2026-08-06T09:58:42.868980+00:00",
+      "latency_ms": 175
     },
     {
       "name": "Market BNBUSDT 4h",
       "status": "ok",
-      "updated_at": "2026-08-06T06:46:10.686750+00:00",
-      "latency_ms": 187
+      "updated_at": "2026-08-06T09:58:43.075108+00:00",
+      "latency_ms": 199
     },
     {
       "name": "Market BNBUSDT 1d",
       "status": "ok",
-      "updated_at": "2026-08-06T06:46:10.891187+00:00",
-      "latency_ms": 193
+      "updated_at": "2026-08-06T09:58:43.277857+00:00",
+      "latency_ms": 195
     },
     {
       "name": "Market ticker BNBUSDT",
       "status": "ok",
-      "updated_at": "2026-08-06T06:46:11.071467+00:00",
-      "latency_ms": 169
+      "updated_at": "2026-08-06T09:58:43.461978+00:00",
+      "latency_ms": 175
     },
     {
       "name": "Market orderbook BNBUSDT",
       "status": "ok",
-      "updated_at": "2026-08-06T06:46:11.249941+00:00",
-      "latency_ms": 178
+      "updated_at": "2026-08-06T09:58:43.630784+00:00",
+      "latency_ms": 168
     },
     {
       "name": "Binance Futures execution BNBUSDT",
       "status": "degraded",
-      "updated_at": "2026-08-06T06:46:11.253115+00:00",
+      "updated_at": "2026-08-06T09:58:43.633733+00:00",
       "error": "HTTP 451 from https://fapi.binance.com/fapi/v1/ticker/bookTicker: {\n  \"code\": 0,\n  \"msg\": \"Service unavailable from a restricted location according to 'b. Eligibility' in https://w"
     },
     {
       "name": "Binance Futures derivatives BNBUSDT",
       "status": "degraded",
-      "updated_at": "2026-08-06T06:46:11.256023+00:00",
+      "updated_at": "2026-08-06T09:58:43.636373+00:00",
       "error": "HTTP 451 from https://fapi.binance.com/fapi/v1/premiumIndex: {\n  \"code\": 0,\n  \"msg\": \"Service unavailable from a restricted location according to 'b. Eligibility' in https://www.bi"
     }
   ],
@@ -265,8 +265,8 @@
         "name": "transicion",
         "direction": "neutral",
         "trending": false,
-        "adx": 19.94,
-        "efficiency_ratio": 0.21,
+        "adx": 20.97,
+        "efficiency_ratio": 0.236,
         "daily_alignment": "short",
         "reason": "Régimen ambiguo; no se permite ninguna estrategia"
       },
@@ -280,8 +280,8 @@
         "name": "tendencial_alcista",
         "direction": "long",
         "trending": true,
-        "adx": 24.09,
-        "efficiency_ratio": 0.379,
+        "adx": 27.25,
+        "efficiency_ratio": 0.345,
         "daily_alignment": "short",
         "reason": "ADX, eficiencia y pendiente confirman tendencia"
       },
@@ -295,8 +295,8 @@
         "name": "lateral",
         "direction": "neutral",
         "trending": false,
-        "adx": 14.93,
-        "efficiency_ratio": 0.087,
+        "adx": 14.58,
+        "efficiency_ratio": 0.132,
         "daily_alignment": "short",
         "reason": "ADX y eficiencia confirman ausencia de tendencia"
       },
@@ -307,13 +307,13 @@
       "timeframe": "1h",
       "version": "v2",
       "regime": {
-        "name": "transicion",
-        "direction": "neutral",
-        "trending": false,
-        "adx": 21.95,
-        "efficiency_ratio": 0.369,
+        "name": "tendencial_alcista",
+        "direction": "long",
+        "trending": true,
+        "adx": 23.79,
+        "efficiency_ratio": 0.361,
         "daily_alignment": "short",
-        "reason": "Régimen ambiguo; no se permite ninguna estrategia"
+        "reason": "ADX, eficiencia y pendiente confirman tendencia"
       },
       "status": "regime_blocked"
     },
@@ -325,8 +325,8 @@
         "name": "lateral",
         "direction": "neutral",
         "trending": false,
-        "adx": 9.32,
-        "efficiency_ratio": 0.037,
+        "adx": 9.46,
+        "efficiency_ratio": 0.038,
         "daily_alignment": "short",
         "reason": "ADX y eficiencia confirman ausencia de tendencia"
       },
@@ -340,14 +340,14 @@
         "name": "lateral",
         "direction": "neutral",
         "trending": false,
-        "adx": 10.16,
-        "efficiency_ratio": 0.03,
+        "adx": 8.88,
+        "efficiency_ratio": 0.013,
         "daily_alignment": "short",
         "reason": "ADX y eficiencia confirman ausencia de tendencia"
       },
       "status": "no_setup",
       "setup": {
-        "zscore": 0.44,
+        "zscore": -0.126,
         "bullish_rejection": false,
         "bearish_rejection": false
       }
