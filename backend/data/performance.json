@@ -1,17 +1,17 @@
 {
   "total_signals": 8,
-  "settled_signals": 7,
-  "win_rate": 0.0,
+  "settled_signals": 8,
+  "win_rate": 12.5,
   "win_rate_95ci": [
-    0,
-    35.43
+    2.24,
+    47.09
   ],
-  "average_r": -0.678,
-  "expectancy": -0.678,
+  "average_r": -0.54,
+  "expectancy": -0.54,
   "max_drawdown_r": 4.746,
-  "profit_factor": 0.0,
-  "total_costs_usd": 58.11,
-  "net_pnl_usd": -474.57,
+  "profit_factor": 0.09,
+  "total_costs_usd": 67.96,
+  "net_pnl_usd": -431.71,
   "equity_curve": [
     0.0,
     -0.122,
@@ -20,7 +20,8 @@
     -3.502,
     -3.713,
     -4.389,
-    -4.746
+    -4.746,
+    -4.317
   ],
   "gross_equity_curve": [
     0.0,
@@ -30,7 +31,8 @@
     -3.09,
     -3.26,
     -3.865,
-    -4.165
+    -4.165,
+    -3.638
   ],
   "equity_curve_usd": [
     0.0,
@@ -40,7 +42,8 @@
     -350.14,
     -371.24,
     -438.88,
-    -474.57
+    -474.57,
+    -431.71
   ],
   "sample_status": "insuficiente",
   "execution_model": {
@@ -59,6 +62,13 @@
     "move_stop_to_break_even": true
   },
   "by_asset": {
+    "BNBUSDT": {
+      "trades": 1,
+      "win_rate": 100.0,
+      "net_r": 0.429,
+      "net_pnl_usd": 42.86,
+      "costs_usd": 9.85
+    },
     "BTCUSDT": {
       "trades": 3,
       "win_rate": 0.0,
@@ -83,11 +93,11 @@
   },
   "by_timeframe": {
     "4h": {
-      "trades": 5,
-      "win_rate": 0.0,
-      "net_r": -2.841,
-      "net_pnl_usd": -284.05,
-      "costs_usd": 28.09
+      "trades": 6,
+      "win_rate": 16.67,
+      "net_r": -2.412,
+      "net_pnl_usd": -241.19,
+      "costs_usd": 37.94
     },
     "1h": {
       "trades": 2,
@@ -98,28 +108,28 @@
     }
   },
   "by_side": {
+    "long": {
+      "trades": 3,
+      "win_rate": 33.33,
+      "net_r": -1.722,
+      "net_pnl_usd": -172.21,
+      "costs_usd": 24.93
+    },
     "short": {
       "trades": 5,
       "win_rate": 0.0,
       "net_r": -2.595,
       "net_pnl_usd": -259.49,
       "costs_usd": 43.03
-    },
-    "long": {
-      "trades": 2,
-      "win_rate": 0.0,
-      "net_r": -2.151,
-      "net_pnl_usd": -215.08,
-      "costs_usd": 15.08
     }
   },
   "by_exit_reason": {
     "time_stop": {
-      "trades": 4,
-      "win_rate": 0.0,
-      "net_r": -1.366,
-      "net_pnl_usd": -136.61,
-      "costs_usd": 20.15
+      "trades": 5,
+      "win_rate": 20.0,
+      "net_r": -0.938,
+      "net_pnl_usd": -93.75,
+      "costs_usd": 30.0
     },
     "stop_loss": {
       "trades": 3,
@@ -933,7 +943,7 @@
       "trades": []
     }
   },
-  "updated_at": "2026-08-08T17:46:16.788052+00:00",
+  "updated_at": "2026-08-08T18:58:30.584184+00:00",
   "v2": {
     "total_trades": 0,
     "win_rate": 0.0,
@@ -955,15 +965,15 @@
     "by_side": {}
   },
   "legacy": {
-    "total_trades": 7,
-    "win_rate": 0.0,
-    "average_r": -0.678,
-    "expectancy": -0.678,
+    "total_trades": 8,
+    "win_rate": 12.5,
+    "average_r": -0.54,
+    "expectancy": -0.54,
     "max_drawdown_r": 4.746,
-    "profit_factor": 0.0,
-    "sharpe_per_trade": -1.485,
-    "sortino_per_trade": -1.485,
-    "probabilistic_sharpe_pct": 0.02,
+    "profit_factor": 0.09,
+    "sharpe_per_trade": -0.937,
+    "sortino_per_trade": -1.182,
+    "probabilistic_sharpe_pct": 1.62,
     "equity_curve": [
       0.0,
       -0.122,
@@ -972,12 +982,20 @@
       -3.501,
       -3.712,
       -4.389,
-      -4.746
+      -4.746,
+      -4.317
     ],
-    "settled_signals": 7,
-    "net_pnl_usd": -474.57,
-    "total_costs_usd": 58.11,
+    "settled_signals": 8,
+    "net_pnl_usd": -431.71,
+    "total_costs_usd": 67.96,
     "by_asset": {
+      "BNBUSDT": {
+        "trades": 1,
+        "win_rate": 100.0,
+        "net_r": 0.429,
+        "net_pnl_usd": 42.86,
+        "costs_usd": 9.85
+      },
       "BTCUSDT": {
         "trades": 3,
         "win_rate": 0.0,
@@ -1002,27 +1020,27 @@
     },
     "by_strategy": {
       "sin_dato": {
-        "trades": 7,
-        "win_rate": 0.0,
-        "net_r": -4.746,
-        "net_pnl_usd": -474.57,
-        "costs_usd": 58.11
+        "trades": 8,
+        "win_rate": 12.5,
+        "net_r": -4.317,
+        "net_pnl_usd": -431.71,
+        "costs_usd": 67.96
       }
     },
     "by_side": {
+      "long": {
+        "trades": 3,
+        "win_rate": 33.33,
+        "net_r": -1.722,
+        "net_pnl_usd": -172.21,
+        "costs_usd": 24.93
+      },
       "short": {
         "trades": 5,
         "win_rate": 0.0,
         "net_r": -2.595,
         "net_pnl_usd": -259.49,
         "costs_usd": 43.03
-      },
-      "long": {
-        "trades": 2,
-        "win_rate": 0.0,
-        "net_r": -2.151,
-        "net_pnl_usd": -215.08,
-        "costs_usd": 15.08
       }
     }
   },

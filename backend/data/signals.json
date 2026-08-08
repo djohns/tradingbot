@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-08-08T17:46:16.788052+00:00",
+  "updated_at": "2026-08-08T18:58:30.584184+00:00",
   "signals": [
     {
       "id": "81001835300da1ef",
@@ -30,8 +30,8 @@
       "publicada_en": "2026-08-04T18:03:44.044793+00:00",
       "vela_analizada_cierre": "2026-08-04T16:00:00+00:00",
       "precio_cierre_analizado": 593.52,
-      "estado": "abierta",
-      "resultado_r": null,
+      "estado": "ganadora",
+      "resultado_r": 0.4286,
       "disclaimer": "Señal algorítmica con fines informativos; no constituye asesoría financiera. Verifica los supuestos y gestiona tu propio riesgo antes de decidir.",
       "abierta_en": "2026-08-04T18:03:44.044793+00:00",
       "precio_mercado_publicacion": 593.57,
@@ -42,7 +42,117 @@
       "modelo_ejecucion": "binance_usdm_futures",
       "comision_maker": 0.0002,
       "comision_taker": 0.0005,
-      "descuento_bnb_pct": 0.0
+      "descuento_bnb_pct": 0.0,
+      "salidas": [
+        {
+          "fraction": 1.0,
+          "price": 604.29,
+          "reason": "time_stop",
+          "reference_price": 604.29,
+          "executed_price": 603.94074757,
+          "quantity": 4.91744738
+        }
+      ],
+      "pnl_bruto_usd": 52.715,
+      "pnl_ejecucion_usd": 49.3106,
+      "comisiones_usd": 2.9452,
+      "impacto_spread_slippage_usd": 3.4044,
+      "funding_usd": 3.5026,
+      "costes_totales_usd": 9.8522,
+      "pnl_neto_usd": 42.8628,
+      "resultado_bruto_r": 0.5272,
+      "funding_eventos": [
+        {
+          "time": "2026-08-05T00:00:00+00:00",
+          "rate": 0.0001,
+          "mark_price": 593.57,
+          "payment_usd": 0.291885,
+          "source": "configured_estimate"
+        },
+        {
+          "time": "2026-08-05T08:00:00+00:00",
+          "rate": 0.0001,
+          "mark_price": 593.57,
+          "payment_usd": 0.291885,
+          "source": "configured_estimate"
+        },
+        {
+          "time": "2026-08-05T16:00:00+00:00",
+          "rate": 0.0001,
+          "mark_price": 593.57,
+          "payment_usd": 0.291885,
+          "source": "configured_estimate"
+        },
+        {
+          "time": "2026-08-06T00:00:00+00:00",
+          "rate": 0.0001,
+          "mark_price": 593.57,
+          "payment_usd": 0.291885,
+          "source": "configured_estimate"
+        },
+        {
+          "time": "2026-08-06T08:00:00+00:00",
+          "rate": 0.0001,
+          "mark_price": 593.57,
+          "payment_usd": 0.291885,
+          "source": "configured_estimate"
+        },
+        {
+          "time": "2026-08-06T16:00:00+00:00",
+          "rate": 0.0001,
+          "mark_price": 593.57,
+          "payment_usd": 0.291885,
+          "source": "configured_estimate"
+        },
+        {
+          "time": "2026-08-07T00:00:00+00:00",
+          "rate": 0.0001,
+          "mark_price": 593.57,
+          "payment_usd": 0.291885,
+          "source": "configured_estimate"
+        },
+        {
+          "time": "2026-08-07T08:00:00+00:00",
+          "rate": 0.0001,
+          "mark_price": 593.57,
+          "payment_usd": 0.291885,
+          "source": "configured_estimate"
+        },
+        {
+          "time": "2026-08-07T16:00:00+00:00",
+          "rate": 0.0001,
+          "mark_price": 593.57,
+          "payment_usd": 0.291885,
+          "source": "configured_estimate"
+        },
+        {
+          "time": "2026-08-08T00:00:00+00:00",
+          "rate": 0.0001,
+          "mark_price": 593.57,
+          "payment_usd": 0.291885,
+          "source": "configured_estimate"
+        },
+        {
+          "time": "2026-08-08T08:00:00+00:00",
+          "rate": 0.0001,
+          "mark_price": 593.57,
+          "payment_usd": 0.291885,
+          "source": "configured_estimate"
+        },
+        {
+          "time": "2026-08-08T16:00:00+00:00",
+          "rate": 0.0001,
+          "mark_price": 593.57,
+          "payment_usd": 0.291885,
+          "source": "configured_estimate"
+        }
+      ],
+      "calidad_costes": "estimated_funding_modelled_execution",
+      "cerrada_en": "2026-08-08T18:15:00+00:00",
+      "motivo_salida": "time_stop",
+      "duracion_horas": 96.19,
+      "mfe_r": 0.8712,
+      "mae_r": 0.454
     },
     {
       "id": "d7daa1c250bd4223",
