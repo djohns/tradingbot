@@ -1,30 +1,30 @@
 {
-  "updated_at": "2026-08-11T23:03:38.171349+00:00",
+  "updated_at": "2026-08-11T23:59:43.176909+00:00",
   "assets": {
     "BTCUSDT": {
       "ticker": {
         "symbol": "BTCUSDT",
-        "price": 63607.6,
-        "change_24h_pct": -0.5651165953561965,
-        "volume_24h": 136.43276583,
-        "quote_volume_24h": 8729278.279838588,
+        "price": 63603.7,
+        "change_24h_pct": -0.5712132889160615,
+        "volume_24h": 115.87769445,
+        "quote_volume_24h": 7413773.836781287,
         "high_24h": 64487.2,
         "low_24h": 63228.7
       },
       "order_book": {
-        "best_bid": 63607.5,
-        "best_ask": 63607.6,
-        "spread_bps": 0.015721404141260716,
-        "bid_notional": 779847.0004,
-        "ask_notional": 849459.8803,
-        "imbalance": -0.04272545628119616,
+        "best_bid": 63603.6,
+        "best_ask": 63603.7,
+        "spread_bps": 0.01572236813430437,
+        "bid_notional": 918752.7951,
+        "ask_notional": 1099234.9948,
+        "imbalance": -0.08943671542677852,
         "largest_bid_wall": [
-          63569.9,
-          2.233
+          63578.7,
+          2.094
         ],
         "largest_ask_wall": [
-          63607.6,
-          1.375
+          63800.7,
+          1.747
         ]
       },
       "data_provider": "Kraken",
@@ -2142,27 +2142,27 @@
     "ETHUSDT": {
       "ticker": {
         "symbol": "ETHUSDT",
-        "price": 1880.21,
-        "change_24h_pct": 0.39030380693043654,
-        "volume_24h": 1166.25132649,
-        "quote_volume_24h": 2180818.337717314,
+        "price": 1882.84,
+        "change_24h_pct": 0.5307277484115414,
+        "volume_24h": 1153.77979895,
+        "quote_volume_24h": 2157613.198373063,
         "high_24h": 1897.39,
         "low_24h": 1854.09
       },
       "order_book": {
-        "best_bid": 1880.13,
-        "best_ask": 1880.23,
-        "spread_bps": 0.5318639704704287,
-        "bid_notional": 706734.92496,
-        "ask_notional": 920030.3281800001,
-        "imbalance": -0.13111627680041418,
+        "best_bid": 1882.89,
+        "best_ask": 1882.9,
+        "spread_bps": 0.05310970606428349,
+        "bid_notional": 768401.28657,
+        "ask_notional": 856014.8135800001,
+        "imbalance": -0.05393539684931082,
         "largest_bid_wall": [
-          1877.98,
-          59.891
+          1881.14,
+          63.14
         ],
         "largest_ask_wall": [
-          1886.16,
-          66.995
+          1889.18,
+          66.949
         ]
       },
       "data_provider": "Kraken",
@@ -4284,27 +4284,27 @@
     "SOLUSDT": {
       "ticker": {
         "symbol": "SOLUSDT",
-        "price": 76.3,
-        "change_24h_pct": 0.39473684210526994,
-        "volume_24h": 12611.89499303,
-        "quote_volume_24h": 955759.217091577,
+        "price": 76.28,
+        "change_24h_pct": 0.36842105263157343,
+        "volume_24h": 12408.77426929,
+        "quote_volume_24h": 940311.7367238037,
         "high_24h": 76.64,
         "low_24h": 74.65
       },
       "order_book": {
-        "best_bid": 76.26,
-        "best_ask": 76.27,
-        "spread_bps": 1.3112174654154467,
-        "bid_notional": 1053011.7927,
-        "ask_notional": 728528.4229400001,
-        "imbalance": 0.18213642718328013,
+        "best_bid": 76.3,
+        "best_ask": 76.31,
+        "spread_bps": 1.3105301094299346,
+        "bid_notional": 1014053.19092,
+        "ask_notional": 744312.59349,
+        "imbalance": 0.15340414367793698,
         "largest_bid_wall": [
-          75.44,
-          6758.867
+          75.53,
+          6730.812
         ],
         "largest_ask_wall": [
-          77.05,
-          3594.684
+          77.1,
+          3612.763
         ]
       },
       "data_provider": "Kraken",
@@ -6414,27 +6414,27 @@
     "BNBUSDT": {
       "ticker": {
         "symbol": "BNBUSDT",
-        "price": 613.48,
-        "change_24h_pct": 2.357554016851582,
-        "volume_24h": 49.73958,
-        "quote_volume_24h": 30094.5861941274,
-        "high_24h": 614.15,
-        "low_24h": 598.37
+        "price": 616.64,
+        "change_24h_pct": 2.884791857846003,
+        "volume_24h": 52.49325,
+        "quote_volume_24h": 31790.382014587503,
+        "high_24h": 617.05,
+        "low_24h": 598.45
       },
       "order_book": {
-        "best_bid": 613.53,
-        "best_ask": 613.57,
-        "spread_bps": 0.6519436068792651,
-        "bid_notional": 194015.34487,
-        "ask_notional": 105269.58023,
-        "imbalance": 0.29652600982273797,
+        "best_bid": 616.63,
+        "best_ask": 616.93,
+        "spread_bps": 4.86397094587948,
+        "bid_notional": 206688.28959,
+        "ask_notional": 123061.56658,
+        "imbalance": 0.2536065488589232,
         "largest_bid_wall": [
-          604.92,
-          110.836
+          610.26,
+          110.044
         ],
         "largest_ask_wall": [
-          619.99,
-          96.586
+          623.27,
+          115.876
         ]
       },
       "data_provider": "Kraken",
