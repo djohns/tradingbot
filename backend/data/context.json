@@ -8,14 +8,14 @@
     "timestamp": "1787097600"
   },
   "global_market": {
-    "btc_dominance": 56.49812195496271,
-    "eth_dominance": 11.081982644994016,
-    "market_cap_change_24h_pct": 7.351790128951811,
-    "total_market_cap_usd": 2457194762482.28
+    "btc_dominance": 56.61917438221267,
+    "eth_dominance": 11.052401309886829,
+    "market_cap_change_24h_pct": 7.267404068235381,
+    "total_market_cap_usd": 2458600913929.1187
   },
   "onchain": {
-    "mempool_transactions": 87121.0,
-    "mempool_vsize": 44087762.0,
+    "mempool_transactions": 90441.0,
+    "mempool_vsize": 45115511.0,
     "fastest_fee": 3.0,
     "hashrate_7d_change_pct": 1.3288423675996475
   },
@@ -26,5 +26,5 @@
   ],
   "missing_sources": [],
   "social": {},
-  "updated_at": "2026-08-19T22:41:30.410874+00:00"
+  "updated_at": "2026-08-19T23:36:12.580547+00:00"
 }
