@@ -1,38 +1,43 @@
 {
-  "updated_at": "2026-08-21T04:24:03.284233+00:00",
+  "updated_at": "2026-08-21T04:54:21.785159+00:00",
   "assets": {
     "BTCUSDT": {
       "ticker": {
         "symbol": "BTCUSDT",
-        "price": 74919.0,
-        "change_24h_pct": 2.5696139623586856,
-        "volume_24h": 280.65960834,
-        "quote_volume_24h": 20377216.281041376,
+        "price": 75022.6,
+        "change_24h_pct": 2.7114499720024554,
+        "volume_24h": 279.19723722,
+        "quote_volume_24h": 20282397.980904058,
         "high_24h": 75758.6,
-        "low_24h": 69263.6
+        "low_24h": 69369.6
       },
       "order_book": {
-        "best_bid": 74915.3,
-        "best_ask": 74915.4,
-        "spread_bps": 0.013348399225428279,
-        "bid_notional": 2191840.6873,
-        "ask_notional": 1756543.9793,
-        "imbalance": 0.1102467831167116,
+        "best_bid": 75032.1,
+        "best_ask": 75032.2,
+        "spread_bps": 0.01332762022563246,
+        "bid_notional": 2109782.5225,
+        "ask_notional": 1824755.6214,
+        "imbalance": 0.07244227674902524,
         "largest_bid_wall": [
-          74595.3,
-          2.163
+          74738.9,
+          2.613
         ],
         "largest_ask_wall": [
-          75141.2,
-          2.101
+          75223.5,
+          2.483
         ]
       },
       "data_provider": "Kraken",
       "derivatives": {
-        "funding_rate": 0.0001,
+        "symbol": "BTCUSDT",
+        "mark_price": 74994.96847101,
+        "index_price": 75027.745,
+        "premium_bps": -4.368587779094435,
+        "funding_rate": 7.128e-05,
+        "next_funding_time": "2026-08-21T08:00:00+00:00",
         "funding_interval_hours": 8,
-        "open_interest": null,
-        "source": "configured_estimate",
+        "open_interest": 108539.395,
+        "source": "binance_usdm_futures",
         "open_interest_change_pct": null
       },
       "timeframe": "1h",
@@ -2150,35 +2155,40 @@
     "ETHUSDT": {
       "ticker": {
         "symbol": "ETHUSDT",
-        "price": 2349.07,
-        "change_24h_pct": 0.9423584313793087,
-        "volume_24h": 3943.07624928,
-        "quote_volume_24h": 9109966.809002584,
+        "price": 2354.76,
+        "change_24h_pct": 1.1868645633696495,
+        "volume_24h": 3894.02792267,
+        "quote_volume_24h": 8999856.813347751,
         "high_24h": 2380.12,
         "low_24h": 2240.43
       },
       "order_book": {
-        "best_bid": 2348.37,
-        "best_ask": 2348.61,
-        "spread_bps": 1.0219332422119596,
-        "bid_notional": 1312519.12302,
-        "ask_notional": 450402.30904,
-        "imbalance": 0.4890273600977235,
+        "best_bid": 2354.99,
+        "best_ask": 2355.0,
+        "spread_bps": 0.04246293516639432,
+        "bid_notional": 1346666.4204199999,
+        "ask_notional": 915036.01435,
+        "imbalance": 0.1908431451610892,
         "largest_bid_wall": [
-          2334.11,
-          72.227
+          2340.1,
+          141.198
         ],
         "largest_ask_wall": [
-          2349.44,
-          17.031
+          2363.25,
+          51.417
         ]
       },
       "data_provider": "Kraken",
       "derivatives": {
+        "symbol": "ETHUSDT",
+        "mark_price": 2353.96482946,
+        "index_price": 2354.97511628,
+        "premium_bps": -4.290010595082716,
         "funding_rate": 0.0001,
+        "next_funding_time": "2026-08-21T08:00:00+00:00",
         "funding_interval_hours": 8,
-        "open_interest": null,
-        "source": "configured_estimate",
+        "open_interest": 2362587.137,
+        "source": "binance_usdm_futures",
         "open_interest_change_pct": null
       },
       "timeframe": "1h",
@@ -4292,35 +4302,40 @@
     "SOLUSDT": {
       "ticker": {
         "symbol": "SOLUSDT",
-        "price": 89.28,
-        "change_24h_pct": 1.8712916476494756,
-        "volume_24h": 24657.54419696,
-        "quote_volume_24h": 2157038.6622391385,
+        "price": 89.43,
+        "change_24h_pct": 2.042446371519868,
+        "volume_24h": 24544.27007346,
+        "quote_volume_24h": 2148238.686291521,
         "high_24h": 90.18,
-        "low_24h": 84.43
+        "low_24h": 84.79
       },
       "order_book": {
-        "best_bid": 89.28,
-        "best_ask": 89.29,
-        "spread_bps": 1.1200089600722536,
-        "bid_notional": 1752353.4968899998,
-        "ask_notional": 1435153.82439,
-        "imbalance": 0.09951339417555369,
+        "best_bid": 89.46,
+        "best_ask": 89.47,
+        "spread_bps": 1.1177555468624731,
+        "bid_notional": 1801413.27844,
+        "ask_notional": 796320.34779,
+        "imbalance": 0.3869114679431764,
         "largest_bid_wall": [
-          86.61,
-          8036.957
+          86.79,
+          8035.955
         ],
         "largest_ask_wall": [
-          91.96,
-          7000.0
+          90.39,
+          3304.199
         ]
       },
       "data_provider": "Kraken",
       "derivatives": {
+        "symbol": "SOLUSDT",
+        "mark_price": 89.45,
+        "index_price": 89.45672128,
+        "premium_bps": -0.751344326488379,
         "funding_rate": 0.0001,
+        "next_funding_time": "2026-08-21T08:00:00+00:00",
         "funding_interval_hours": 8,
-        "open_interest": null,
-        "source": "configured_estimate",
+        "open_interest": 8236378.1,
+        "source": "binance_usdm_futures",
         "open_interest_change_pct": null
       },
       "timeframe": "1h",
@@ -6450,35 +6465,40 @@
     "BNBUSDT": {
       "ticker": {
         "symbol": "BNBUSDT",
-        "price": 661.15,
-        "change_24h_pct": 1.0515536399345882,
-        "volume_24h": 175.14471,
-        "quote_volume_24h": 112327.2785367993,
+        "price": 659.33,
+        "change_24h_pct": 0.7733810200681868,
+        "volume_24h": 156.44932,
+        "quote_volume_24h": 100826.7540205052,
         "high_24h": 665.14,
-        "low_24h": 622.13
+        "low_24h": 624.59
       },
       "order_book": {
-        "best_bid": 660.53,
-        "best_ask": 660.77,
-        "spread_bps": 3.6327858926815875,
-        "bid_notional": 117319.47497,
-        "ask_notional": 138748.53027000002,
-        "imbalance": -0.08368501672013111,
+        "best_bid": 660.62,
+        "best_ask": 661.06,
+        "spread_bps": 6.658192603352414,
+        "bid_notional": 108364.59384,
+        "ask_notional": 163103.55670000002,
+        "imbalance": -0.20164046040433903,
         "largest_bid_wall": [
-          653.63,
-          95.31
+          654.05,
+          94.682
         ],
         "largest_ask_wall": [
-          667.51,
-          128.667
+          667.65,
+          159.33
         ]
       },
       "data_provider": "Kraken",
       "derivatives": {
-        "funding_rate": 0.0001,
+        "symbol": "BNBUSDT",
+        "mark_price": 661.18690823,
+        "index_price": 660.92292342,
+        "premium_bps": 3.994184505418108,
+        "funding_rate": 0.0,
+        "next_funding_time": "2026-08-21T08:00:00+00:00",
         "funding_interval_hours": 8,
-        "open_interest": null,
-        "source": "configured_estimate",
+        "open_interest": 607878.28,
+        "source": "binance_usdm_futures",
         "open_interest_change_pct": null
       },
       "timeframe": "1h",
