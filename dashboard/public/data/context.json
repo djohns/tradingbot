@@ -1,5 +1,5 @@
 {
-  "score": 8.4,
+  "score": 7.8,
   "label": "neutral",
   "macro_score": 36.1,
   "fear_greed": {
@@ -8,23 +8,20 @@
     "timestamp": "1787443200"
   },
   "global_market": {
-    "btc_dominance": 59.24290555203849,
-    "eth_dominance": 11.19670361150558,
-    "market_cap_change_24h_pct": -4.191015506905478,
-    "total_market_cap_usd": 2610696369961.3735
+    "btc_dominance": 59.31750397251824,
+    "eth_dominance": 11.180767607237199,
+    "market_cap_change_24h_pct": -5.498640598941104,
+    "total_market_cap_usd": 2600582334592.1875
   },
-  "onchain": {
-    "mempool_transactions": 76450.0,
-    "mempool_vsize": 42335251.0,
-    "fastest_fee": 1.0,
-    "hashrate_7d_change_pct": 1.3288423675996475
-  },
+  "onchain": null,
   "macro_reasons": [
     "Dólar 20 períodos: -1.35%",
     "M2 3 períodos: +2.11%",
     "Curva 10Y-2Y: +0.50"
   ],
-  "missing_sources": [],
+  "missing_sources": [
+    "onchain"
+  ],
   "social": {},
-  "updated_at": "2026-08-23T01:59:44.948311+00:00"
+  "updated_at": "2026-08-23T03:20:45.271504+00:00"
 }
