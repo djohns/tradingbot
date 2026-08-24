@@ -142,18 +142,18 @@
   "backtests": {
     "BTCUSDT": {
       "total_trades": 2,
-      "win_rate": 50.0,
-      "average_r": -0.223,
-      "expectancy": -0.223,
-      "max_drawdown_r": 0.961,
-      "profit_factor": 0.536,
-      "sharpe_per_trade": -0.213,
-      "sortino_per_trade": 0.0,
+      "win_rate": 0.0,
+      "average_r": -0.549,
+      "expectancy": -0.549,
+      "max_drawdown_r": 1.098,
+      "profit_factor": 0.0,
+      "sharpe_per_trade": -0.942,
+      "sortino_per_trade": -0.942,
       "probabilistic_sharpe_pct": 0.0,
       "equity_curve": [
         0.0,
-        0.515,
-        -0.446
+        -0.137,
+        -1.098
       ],
       "by_regime": {
         "alcista": {
@@ -172,18 +172,18 @@
         },
         "bajista": {
           "total_trades": 2,
-          "win_rate": 50.0,
-          "average_r": -0.223,
-          "expectancy": -0.223,
-          "max_drawdown_r": 0.961,
-          "profit_factor": 0.536,
-          "sharpe_per_trade": -0.213,
-          "sortino_per_trade": 0.0,
+          "win_rate": 0.0,
+          "average_r": -0.549,
+          "expectancy": -0.549,
+          "max_drawdown_r": 1.098,
+          "profit_factor": 0.0,
+          "sharpe_per_trade": -0.942,
+          "sortino_per_trade": -0.942,
           "probabilistic_sharpe_pct": 0.0,
           "equity_curve": [
             0.0,
-            0.515,
-            -0.446
+            -0.137,
+            -1.098
           ]
         },
         "lateral": {
@@ -204,18 +204,18 @@
       "by_strategy": {
         "ruptura_tendencial": {
           "total_trades": 2,
-          "win_rate": 50.0,
-          "average_r": -0.223,
-          "expectancy": -0.223,
-          "max_drawdown_r": 0.961,
-          "profit_factor": 0.536,
-          "sharpe_per_trade": -0.213,
-          "sortino_per_trade": 0.0,
+          "win_rate": 0.0,
+          "average_r": -0.549,
+          "expectancy": -0.549,
+          "max_drawdown_r": 1.098,
+          "profit_factor": 0.0,
+          "sharpe_per_trade": -0.942,
+          "sortino_per_trade": -0.942,
           "probabilistic_sharpe_pct": 0.0,
           "equity_curve": [
             0.0,
-            0.515,
-            -0.446
+            -0.137,
+            -1.098
           ]
         },
         "reversion_lateral": {
@@ -233,33 +233,33 @@
           ]
         }
       },
-      "total_costs_usd": 2.91,
-      "net_pnl_usd": -27.67,
+      "total_costs_usd": 3.0,
+      "net_pnl_usd": -52.34,
       "walk_forward": {
         "method": "fixed_parameters_expanding_window",
         "folds": [
           {
             "fold": 1,
-            "start": "2026-06-04T00:00:00+00:00",
-            "end": "2026-06-10T16:00:00+00:00",
+            "start": "2026-06-05T16:00:00+00:00",
+            "end": "2026-06-11T22:00:00+00:00",
             "total_trades": 1,
-            "win_rate": 100.0,
-            "average_r": 0.515,
-            "expectancy": 0.515,
-            "max_drawdown_r": 0.0,
-            "profit_factor": 999,
+            "win_rate": 0.0,
+            "average_r": -0.137,
+            "expectancy": -0.137,
+            "max_drawdown_r": 0.137,
+            "profit_factor": 0.0,
             "sharpe_per_trade": 0.0,
             "sortino_per_trade": 0.0,
             "probabilistic_sharpe_pct": 0.0,
             "equity_curve": [
               0.0,
-              0.515
+              -0.137
             ]
           },
           {
             "fold": 2,
-            "start": "2026-06-10T16:00:00+00:00",
-            "end": "2026-06-17T08:00:00+00:00",
+            "start": "2026-06-11T22:00:00+00:00",
+            "end": "2026-06-18T04:00:00+00:00",
             "total_trades": 0,
             "win_rate": 0.0,
             "average_r": 0.0,
@@ -275,8 +275,8 @@
           },
           {
             "fold": 3,
-            "start": "2026-06-17T08:00:00+00:00",
-            "end": "2026-06-24T00:00:00+00:00",
+            "start": "2026-06-18T04:00:00+00:00",
+            "end": "2026-06-24T10:00:00+00:00",
             "total_trades": 0,
             "win_rate": 0.0,
             "average_r": 0.0,
@@ -292,7 +292,7 @@
           },
           {
             "fold": 4,
-            "start": "2026-06-24T00:00:00+00:00",
+            "start": "2026-06-24T10:00:00+00:00",
             "end": "2026-06-30T16:00:00+00:00",
             "total_trades": 1,
             "win_rate": 0.0,
@@ -313,50 +313,50 @@
       "cost_stress": {
         "1x": {
           "total_trades": 2,
-          "win_rate": 50.0,
-          "average_r": -0.223,
-          "expectancy": -0.223,
-          "max_drawdown_r": 0.961,
-          "profit_factor": 0.536,
-          "sharpe_per_trade": -0.213,
-          "sortino_per_trade": 0.0,
+          "win_rate": 0.0,
+          "average_r": -0.549,
+          "expectancy": -0.549,
+          "max_drawdown_r": 1.098,
+          "profit_factor": 0.0,
+          "sharpe_per_trade": -0.942,
+          "sortino_per_trade": -0.942,
           "probabilistic_sharpe_pct": 0.0,
           "equity_curve": [
             0.0,
-            0.515,
-            -0.446
+            -0.137,
+            -1.098
           ]
         },
         "2x": {
           "total_trades": 2,
-          "win_rate": 50.0,
-          "average_r": -0.254,
-          "expectancy": -0.254,
-          "max_drawdown_r": 1.006,
-          "profit_factor": 0.495,
-          "sharpe_per_trade": -0.239,
-          "sortino_per_trade": 0.0,
+          "win_rate": 0.0,
+          "average_r": -0.584,
+          "expectancy": -0.584,
+          "max_drawdown_r": 1.167,
+          "profit_factor": 0.0,
+          "sharpe_per_trade": -0.978,
+          "sortino_per_trade": -0.978,
           "probabilistic_sharpe_pct": 0.0,
           "equity_curve": [
             0.0,
-            0.498,
-            -0.508
+            -0.162,
+            -1.167
           ]
         },
         "3x": {
           "total_trades": 2,
-          "win_rate": 50.0,
-          "average_r": -0.285,
-          "expectancy": -0.285,
-          "max_drawdown_r": 1.05,
-          "profit_factor": 0.458,
-          "sharpe_per_trade": -0.263,
-          "sortino_per_trade": 0.0,
+          "win_rate": 0.0,
+          "average_r": -0.618,
+          "expectancy": -0.618,
+          "max_drawdown_r": 1.236,
+          "profit_factor": 0.0,
+          "sharpe_per_trade": -1.012,
+          "sortino_per_trade": -1.012,
           "probabilistic_sharpe_pct": 0.0,
           "equity_curve": [
             0.0,
-            0.481,
-            -0.57
+            -0.186,
+            -1.236
           ]
         }
       },
@@ -389,13 +389,13 @@
           "side": "short",
           "strategy": "ruptura_tendencial",
           "timeframe": "4h",
-          "entry_time": "2026-06-04T00:00:00+00:00",
-          "exit_time": "2026-06-07T12:00:00+00:00",
-          "exit_reason": "trailing_stop",
-          "result_r": 0.5153,
-          "gross_result_r": 0.5325,
-          "net_pnl_usd": 20.3782,
-          "costs_usd": 0.6838,
+          "entry_time": "2026-06-05T16:00:00+00:00",
+          "exit_time": "2026-06-06T16:00:00+00:00",
+          "exit_reason": "no_followthrough",
+          "result_r": -0.1371,
+          "gross_result_r": -0.1125,
+          "net_pnl_usd": -4.2836,
+          "costs_usd": 0.7691,
           "regime": "tendencial_bajista"
         },
         {
@@ -903,7 +903,7 @@
       "trades": []
     }
   },
-  "updated_at": "2026-08-24T04:09:19.465499+00:00",
+  "updated_at": "2026-08-24T04:30:11.650364+00:00",
   "v2": {
     "total_trades": 0,
     "win_rate": 0.0,
@@ -1027,18 +1027,18 @@
     },
     "oos": {
       "total_trades": 2,
-      "win_rate": 50.0,
-      "average_r": -0.223,
-      "expectancy": -0.223,
-      "max_drawdown_r": 0.961,
-      "profit_factor": 0.536,
-      "sharpe_per_trade": -0.213,
-      "sortino_per_trade": 0.0,
+      "win_rate": 0.0,
+      "average_r": -0.549,
+      "expectancy": -0.549,
+      "max_drawdown_r": 1.098,
+      "profit_factor": 0.0,
+      "sharpe_per_trade": -0.942,
+      "sortino_per_trade": -0.942,
       "probabilistic_sharpe_pct": 0.0,
       "equity_curve": [
         0.0,
-        0.515,
-        -0.446
+        -0.137,
+        -1.098
       ]
     },
     "mode": "shadow"
