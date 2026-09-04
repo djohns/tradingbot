@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-04T09:39:22.205186+00:00",
+  "updated_at": "2026-09-04T14:21:40.833521+00:00",
   "signals": [
     {
       "id": "edc948b8a983d145",
@@ -56,8 +56,8 @@
       "publicada_en": "2026-09-03T18:39:01.448330+00:00",
       "vela_analizada_cierre": "2026-09-03T16:00:00+00:00",
       "precio_cierre_analizado": 81342.0,
-      "estado": "sombra",
-      "resultado_r": null,
+      "estado": "perdedora",
+      "resultado_r": -0.767,
       "disclaimer": "Señal V2 en validación con fines informativos; no constituye asesoría financiera. Permanece en modo sombra hasta superar los criterios fuera de muestra.",
       "abierta_en": "2026-09-03T18:39:01.448330+00:00",
       "precio_mercado_publicacion": 81034.3,
@@ -68,7 +68,47 @@
       "modelo_ejecucion": "binance_usdm_futures",
       "comision_maker": 0.0002,
       "comision_taker": 0.0005,
-      "descuento_bnb_pct": 0.0
+      "descuento_bnb_pct": 0.0,
+      "salidas": [
+        {
+          "fraction": 1.0,
+          "price": 79273.65867375,
+          "reason": "trailing_stop",
+          "reference_price": 79273.65867375,
+          "executed_price": 79241.94921028,
+          "quantity": 0.0167434
+        }
+      ],
+      "pnl_bruto_usd": -29.4791,
+      "pnl_ejecucion_usd": -30.5528,
+      "comisiones_usd": 1.3421,
+      "impacto_spread_slippage_usd": 1.0736,
+      "funding_usd": 0.2714,
+      "costes_totales_usd": 2.6871,
+      "pnl_neto_usd": -32.1662,
+      "resultado_bruto_r": -0.7029,
+      "funding_eventos": [
+        {
+          "time": "2026-09-04T00:00:00+00:00",
+          "rate": 0.0001,
+          "mark_price": 81034.3,
+          "payment_usd": 0.135679,
+          "source": "configured_estimate"
+        },
+        {
+          "time": "2026-09-04T08:00:00+00:00",
+          "rate": 0.0001,
+          "mark_price": 81034.3,
+          "payment_usd": 0.135679,
+          "source": "configured_estimate"
+        }
+      ],
+      "calidad_costes": "estimated_funding_modelled_execution",
+      "cerrada_en": "2026-09-04T13:00:00+00:00",
+      "motivo_salida": "trailing_stop",
+      "duracion_horas": 18.35,
+      "mfe_r": 0.4842,
+      "mae_r": 0.7452
     },
     {
       "id": "81001835300da1ef",

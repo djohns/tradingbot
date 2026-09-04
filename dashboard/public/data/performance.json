@@ -1,17 +1,17 @@
 {
   "total_signals": 9,
-  "settled_signals": 8,
-  "win_rate": 12.5,
+  "settled_signals": 9,
+  "win_rate": 11.11,
   "win_rate_95ci": [
-    2.24,
-    47.09
+    1.99,
+    43.5
   ],
-  "average_r": -0.54,
-  "expectancy": -0.54,
-  "max_drawdown_r": 4.746,
-  "profit_factor": 0.09,
-  "total_costs_usd": 67.96,
-  "net_pnl_usd": -431.71,
+  "average_r": -0.565,
+  "expectancy": -0.565,
+  "max_drawdown_r": 5.084,
+  "profit_factor": 0.078,
+  "total_costs_usd": 70.64,
+  "net_pnl_usd": -463.87,
   "equity_curve": [
     0.0,
     -0.122,
@@ -21,7 +21,8 @@
     -3.713,
     -4.389,
     -4.746,
-    -4.317
+    -4.317,
+    -5.084
   ],
   "gross_equity_curve": [
     0.0,
@@ -32,7 +33,8 @@
     -3.26,
     -3.865,
     -4.165,
-    -3.638
+    -3.638,
+    -4.341
   ],
   "equity_curve_usd": [
     0.0,
@@ -43,7 +45,8 @@
     -371.24,
     -438.88,
     -474.57,
-    -431.71
+    -431.71,
+    -463.88
   ],
   "sample_status": "insuficiente",
   "execution_model": {
@@ -62,19 +65,19 @@
     "move_stop_to_break_even": true
   },
   "by_asset": {
+    "BTCUSDT": {
+      "trades": 4,
+      "win_rate": 0.0,
+      "net_r": -2.564,
+      "net_pnl_usd": -211.83,
+      "costs_usd": 35.35
+    },
     "BNBUSDT": {
       "trades": 1,
       "win_rate": 100.0,
       "net_r": 0.429,
       "net_pnl_usd": 42.86,
       "costs_usd": 9.85
-    },
-    "BTCUSDT": {
-      "trades": 3,
-      "win_rate": 0.0,
-      "net_r": -1.797,
-      "net_pnl_usd": -179.67,
-      "costs_usd": 32.67
     },
     "SOLUSDT": {
       "trades": 2,
@@ -93,11 +96,11 @@
   },
   "by_timeframe": {
     "4h": {
-      "trades": 6,
-      "win_rate": 16.67,
-      "net_r": -2.412,
-      "net_pnl_usd": -241.19,
-      "costs_usd": 37.94
+      "trades": 7,
+      "win_rate": 14.29,
+      "net_r": -3.179,
+      "net_pnl_usd": -273.35,
+      "costs_usd": 40.63
     },
     "1h": {
       "trades": 2,
@@ -109,11 +112,11 @@
   },
   "by_side": {
     "long": {
-      "trades": 3,
-      "win_rate": 33.33,
-      "net_r": -1.722,
-      "net_pnl_usd": -172.21,
-      "costs_usd": 24.93
+      "trades": 4,
+      "win_rate": 25.0,
+      "net_r": -2.489,
+      "net_pnl_usd": -204.38,
+      "costs_usd": 27.62
     },
     "short": {
       "trades": 5,
@@ -124,6 +127,13 @@
     }
   },
   "by_exit_reason": {
+    "trailing_stop": {
+      "trades": 1,
+      "win_rate": 0.0,
+      "net_r": -0.767,
+      "net_pnl_usd": -32.17,
+      "costs_usd": 2.69
+    },
     "time_stop": {
       "trades": 5,
       "win_rate": 20.0,
@@ -903,26 +913,51 @@
       "trades": []
     }
   },
-  "updated_at": "2026-09-04T09:39:22.205186+00:00",
+  "updated_at": "2026-09-04T14:21:40.833521+00:00",
   "v2": {
-    "total_trades": 0,
+    "total_trades": 1,
     "win_rate": 0.0,
-    "average_r": 0.0,
-    "expectancy": 0.0,
-    "max_drawdown_r": 0.0,
+    "average_r": -0.767,
+    "expectancy": -0.767,
+    "max_drawdown_r": 0.767,
     "profit_factor": 0.0,
     "sharpe_per_trade": 0.0,
     "sortino_per_trade": 0.0,
     "probabilistic_sharpe_pct": 0.0,
     "equity_curve": [
-      0.0
+      0.0,
+      -0.767
     ],
-    "settled_signals": 0,
-    "net_pnl_usd": 0,
-    "total_costs_usd": 0,
-    "by_asset": {},
-    "by_strategy": {},
-    "by_side": {}
+    "settled_signals": 1,
+    "net_pnl_usd": -32.17,
+    "total_costs_usd": 2.69,
+    "by_asset": {
+      "BTCUSDT": {
+        "trades": 1,
+        "win_rate": 0.0,
+        "net_r": -0.767,
+        "net_pnl_usd": -32.17,
+        "costs_usd": 2.69
+      }
+    },
+    "by_strategy": {
+      "ruptura_tendencial": {
+        "trades": 1,
+        "win_rate": 0.0,
+        "net_r": -0.767,
+        "net_pnl_usd": -32.17,
+        "costs_usd": 2.69
+      }
+    },
+    "by_side": {
+      "long": {
+        "trades": 1,
+        "win_rate": 0.0,
+        "net_r": -0.767,
+        "net_pnl_usd": -32.17,
+        "costs_usd": 2.69
+      }
+    }
   },
   "legacy": {
     "total_trades": 8,
