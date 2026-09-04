@@ -141,32 +141,34 @@
   },
   "backtests": {
     "BTCUSDT": {
-      "total_trades": 1,
+      "total_trades": 2,
       "win_rate": 0.0,
-      "average_r": -0.961,
-      "expectancy": -0.961,
-      "max_drawdown_r": 0.961,
+      "average_r": -0.652,
+      "expectancy": -0.652,
+      "max_drawdown_r": 1.304,
       "profit_factor": 0.0,
-      "sharpe_per_trade": 0.0,
-      "sortino_per_trade": 0.0,
+      "sharpe_per_trade": -1.493,
+      "sortino_per_trade": -1.493,
       "probabilistic_sharpe_pct": 0.0,
       "equity_curve": [
         0.0,
-        -0.961
+        -0.961,
+        -1.304
       ],
       "by_regime": {
         "alcista": {
-          "total_trades": 0,
+          "total_trades": 1,
           "win_rate": 0.0,
-          "average_r": 0.0,
-          "expectancy": 0.0,
-          "max_drawdown_r": 0.0,
+          "average_r": -0.343,
+          "expectancy": -0.343,
+          "max_drawdown_r": 0.343,
           "profit_factor": 0.0,
           "sharpe_per_trade": 0.0,
           "sortino_per_trade": 0.0,
           "probabilistic_sharpe_pct": 0.0,
           "equity_curve": [
-            0.0
+            0.0,
+            -0.343
           ]
         },
         "bajista": {
@@ -201,18 +203,19 @@
       },
       "by_strategy": {
         "ruptura_tendencial": {
-          "total_trades": 1,
+          "total_trades": 2,
           "win_rate": 0.0,
-          "average_r": -0.961,
-          "expectancy": -0.961,
-          "max_drawdown_r": 0.961,
+          "average_r": -0.652,
+          "expectancy": -0.652,
+          "max_drawdown_r": 1.304,
           "profit_factor": 0.0,
-          "sharpe_per_trade": 0.0,
-          "sortino_per_trade": 0.0,
+          "sharpe_per_trade": -1.493,
+          "sortino_per_trade": -1.493,
           "probabilistic_sharpe_pct": 0.0,
           "equity_curve": [
             0.0,
-            -0.961
+            -0.961,
+            -1.304
           ]
         },
         "reversion_lateral": {
@@ -230,32 +233,33 @@
           ]
         }
       },
-      "total_costs_usd": 2.23,
-      "net_pnl_usd": -48.05,
+      "total_costs_usd": 4.94,
+      "net_pnl_usd": -62.45,
       "walk_forward": {
         "method": "fixed_parameters_expanding_window",
         "folds": [
           {
             "fold": 1,
             "start": "2026-06-30T16:00:00+00:00",
-            "end": "2026-06-30T16:00:00+00:00",
-            "total_trades": 0,
+            "end": "2026-07-16T22:00:00+00:00",
+            "total_trades": 1,
             "win_rate": 0.0,
-            "average_r": 0.0,
-            "expectancy": 0.0,
-            "max_drawdown_r": 0.0,
+            "average_r": -0.961,
+            "expectancy": -0.961,
+            "max_drawdown_r": 0.961,
             "profit_factor": 0.0,
             "sharpe_per_trade": 0.0,
             "sortino_per_trade": 0.0,
             "probabilistic_sharpe_pct": 0.0,
             "equity_curve": [
-              0.0
+              0.0,
+              -0.961
             ]
           },
           {
             "fold": 2,
-            "start": "2026-06-30T16:00:00+00:00",
-            "end": "2026-06-30T16:00:00+00:00",
+            "start": "2026-07-16T22:00:00+00:00",
+            "end": "2026-08-02T04:00:00+00:00",
             "total_trades": 0,
             "win_rate": 0.0,
             "average_r": 0.0,
@@ -271,8 +275,8 @@
           },
           {
             "fold": 3,
-            "start": "2026-06-30T16:00:00+00:00",
-            "end": "2026-06-30T16:00:00+00:00",
+            "start": "2026-08-02T04:00:00+00:00",
+            "end": "2026-08-18T10:00:00+00:00",
             "total_trades": 0,
             "win_rate": 0.0,
             "average_r": 0.0,
@@ -288,68 +292,71 @@
           },
           {
             "fold": 4,
-            "start": "2026-06-30T16:00:00+00:00",
-            "end": "2026-06-30T16:00:00+00:00",
+            "start": "2026-08-18T10:00:00+00:00",
+            "end": "2026-09-03T16:00:00+00:00",
             "total_trades": 1,
             "win_rate": 0.0,
-            "average_r": -0.961,
-            "expectancy": -0.961,
-            "max_drawdown_r": 0.961,
+            "average_r": -0.343,
+            "expectancy": -0.343,
+            "max_drawdown_r": 0.343,
             "profit_factor": 0.0,
             "sharpe_per_trade": 0.0,
             "sortino_per_trade": 0.0,
             "probabilistic_sharpe_pct": 0.0,
             "equity_curve": [
               0.0,
-              -0.961
+              -0.343
             ]
           }
         ]
       },
       "cost_stress": {
         "1x": {
-          "total_trades": 1,
+          "total_trades": 2,
           "win_rate": 0.0,
-          "average_r": -0.961,
-          "expectancy": -0.961,
-          "max_drawdown_r": 0.961,
+          "average_r": -0.652,
+          "expectancy": -0.652,
+          "max_drawdown_r": 1.304,
           "profit_factor": 0.0,
-          "sharpe_per_trade": 0.0,
-          "sortino_per_trade": 0.0,
+          "sharpe_per_trade": -1.493,
+          "sortino_per_trade": -1.493,
           "probabilistic_sharpe_pct": 0.0,
           "equity_curve": [
             0.0,
-            -0.961
+            -0.961,
+            -1.304
           ]
         },
         "2x": {
-          "total_trades": 1,
+          "total_trades": 2,
           "win_rate": 0.0,
-          "average_r": -1.006,
-          "expectancy": -1.006,
-          "max_drawdown_r": 1.006,
+          "average_r": -0.707,
+          "expectancy": -0.707,
+          "max_drawdown_r": 1.414,
           "profit_factor": 0.0,
-          "sharpe_per_trade": 0.0,
-          "sortino_per_trade": 0.0,
+          "sharpe_per_trade": -1.673,
+          "sortino_per_trade": -1.673,
           "probabilistic_sharpe_pct": 0.0,
           "equity_curve": [
             0.0,
-            -1.006
+            -1.006,
+            -1.414
           ]
         },
         "3x": {
-          "total_trades": 1,
+          "total_trades": 2,
           "win_rate": 0.0,
-          "average_r": -1.05,
-          "expectancy": -1.05,
-          "max_drawdown_r": 1.05,
+          "average_r": -0.761,
+          "expectancy": -0.761,
+          "max_drawdown_r": 1.523,
           "profit_factor": 0.0,
-          "sharpe_per_trade": 0.0,
-          "sortino_per_trade": 0.0,
+          "sharpe_per_trade": -1.865,
+          "sortino_per_trade": -1.865,
           "probabilistic_sharpe_pct": 0.0,
           "equity_curve": [
             0.0,
-            -1.05
+            -1.05,
+            -1.523
           ]
         }
       },
@@ -390,6 +397,19 @@
           "net_pnl_usd": -48.0517,
           "costs_usd": 2.2283,
           "regime": "tendencial_bajista"
+        },
+        {
+          "side": "long",
+          "strategy": "ruptura_tendencial",
+          "timeframe": "4h",
+          "entry_time": "2026-09-03T16:00:00+00:00",
+          "exit_time": "2026-09-04T08:00:00+00:00",
+          "exit_reason": "max_holding",
+          "result_r": -0.3433,
+          "gross_result_r": -0.2786,
+          "net_pnl_usd": -14.3976,
+          "costs_usd": 2.714,
+          "regime": "tendencial_alcista"
         }
       ]
     },
@@ -883,7 +903,7 @@
       "trades": []
     }
   },
-  "updated_at": "2026-09-04T04:32:58.940836+00:00",
+  "updated_at": "2026-09-04T08:14:23.100765+00:00",
   "v2": {
     "total_trades": 0,
     "win_rate": 0.0,
@@ -1006,18 +1026,19 @@
       "walk_forward_folds": 4
     },
     "oos": {
-      "total_trades": 1,
+      "total_trades": 2,
       "win_rate": 0.0,
-      "average_r": -0.961,
-      "expectancy": -0.961,
-      "max_drawdown_r": 0.961,
+      "average_r": -0.652,
+      "expectancy": -0.652,
+      "max_drawdown_r": 1.304,
       "profit_factor": 0.0,
-      "sharpe_per_trade": 0.0,
-      "sortino_per_trade": 0.0,
+      "sharpe_per_trade": -1.493,
+      "sortino_per_trade": -1.493,
       "probabilistic_sharpe_pct": 0.0,
       "equity_curve": [
         0.0,
-        -0.961
+        -0.961,
+        -1.304
       ]
     },
     "mode": "shadow"
